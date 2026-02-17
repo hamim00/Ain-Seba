@@ -1,0 +1,12 @@
+Place downloaded Bangladesh law PDFs in this directory.
+
+See scripts/ingestion/download_laws.py for download instructions.
+
+Required files (P0 priority):
+- bangladesh_labour_act_2006.pdf
+- penal_code_1860.pdf
+- consumer_rights_protection_act_2009.pdf
+- cyber_security_act_2023.pdf
+
+To test with a sample PDF:
+  python scripts/ingestion/create_sample_pdf.py

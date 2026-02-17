@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual Environment
+venv/
+env/
+.venv/
+
+# Environment Variables
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data (PDFs are large - keep in raw but don't track)
+# Uncomment below if you don't want to track raw PDFs in git
+# data/raw/*.pdf
+
+# ChromaDB (Phase 2+)
+chroma_db/
+
+# Logs
+*.log
+logs/
+
+# Jupyter
+.ipynb_checkpoints/
