@@ -34,6 +34,17 @@ EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "text-embedding-3-small")
 LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
 
 # ============================================
+# Phase 2: Vector Store & Retrieval Config
+# ============================================
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
+CHROMA_PERSIST_DIR = PROJECT_ROOT / os.getenv("CHROMA_PERSIST_DIR", "chroma_db")
+CHROMA_COLLECTION_NAME = os.getenv("CHROMA_COLLECTION_NAME", "ainseba_laws")
+
+RETRIEVAL_TOP_K = int(os.getenv("RETRIEVAL_TOP_K", 10))
+RERANK_TOP_N = int(os.getenv("RERANK_TOP_N", 5))
+RERANKER_MODEL = os.getenv("RERANKER_MODEL", "cross-encoder/ms-marco-MiniLM-L-6-v2")
+
+# ============================================
 # Law Document Registry
 # Each entry contains metadata about a law PDF.
 # This registry drives the entire ingestion pipeline.

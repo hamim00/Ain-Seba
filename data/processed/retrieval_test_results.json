@@ -1,0 +1,533 @@
+{
+  "test_date": "2026-02-22T10:38:16.168096",
+  "total_queries": 15,
+  "passed": 3,
+  "pass_rate": 20.0,
+  "results": [
+    {
+      "query_index": 1,
+      "query": "What is the maximum working hours per day?",
+      "type": "factual",
+      "description": "Direct section lookup about working hours",
+      "expected_act": "labour",
+      "num_results": 5,
+      "top_results": [
+        {
+          "rank": 1,
+          "chunk_id": "sample_workers_2024_40f5cd25bc5e",
+          "citation": "Sample Workers Protection Act 2024, Chapter II: EMPLOYMENT CONDITIONS, Section 4, (Maximum working hours)",
+          "similarity": 0.6305,
+          "rerank_score": 4.362232208251953,
+          "text_preview": "Section 4. Maximum working hours\n(1) No worker shall be required or allowed to work in an establishment for more than eight hours in any day.\n(2) No worker shall be required or allowed to work for mor"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "sample_workers_2024_348c0151a2cc",
+          "citation": "Sample Workers Protection Act 2024, Chapter II: EMPLOYMENT CONDITIONS, Section 3, (Terms of employment)",
+          "similarity": 0.2446,
+          "rerank_score": -10.156631469726562,
+          "text_preview": "Section 3. Terms of employment\n(1) Every employer shall, within thirty days of the employment of a worker, provide the worker with a written contract of employment.\n(2) The contract of employment shal"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "sample_workers_2024_7c4867b40623",
+          "citation": "Sample Workers Protection Act 2024, Chapter V: WORKPLACE SAFETY, Section 12, (Cleanliness)",
+          "similarity": 0.2093,
+          "rerank_score": -10.910346031188965,
+          "text_preview": "Section 12. Cleanliness\n(1) Every establishment shall be kept clean and free from effluvia arising from any drain, privy or other nuisance.\n(2) The floors of every workroom shall be cleaned at least o"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "query_index": 2,
+      "query": "What is the penalty for theft?",
+      "type": "factual",
+      "description": "Criminal law penalty lookup",
+      "expected_act": "penal",
+      "num_results": 5,
+      "top_results": [
+        {
+          "rank": 1,
+          "chunk_id": "sample_workers_2024_8f2d1f4c6bef",
+          "citation": "Sample Workers Protection Act 2024, Chapter VI: PENALTIES AND ENFORCEMENT, Section 15, (Penalties for violations)",
+          "similarity": 0.4135,
+          "rerank_score": -1.7393368482589722,
+          "text_preview": "Section 15. Penalties for violations\n(1) Whoever contravenes any provision of this Act or any rule made thereunder shall be punishable with imprisonment for a term which may extend to one year, or wit"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "sample_workers_2024_9736bc975f28",
+          "citation": "Sample Workers Protection Act 2024, Chapter VI: PENALTIES AND ENFORCEMENT, Section 16, (Powers of Inspectors)",
+          "similarity": 0.1838,
+          "rerank_score": -10.898170471191406,
+          "text_preview": "Section 16. Powers of Inspectors\n(1) An Inspector may, for the purpose of carrying out the provisions of this Act:\n(a) enter any premises which is used as an establishment;\n(b) examine any person foun"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "sample_workers_2024_ffa5969e779a",
+          "citation": "Sample Workers Protection Act 2024, Chapter VI: PENALTIES AND ENFORCEMENT, Section 17, (Complaints and proceedings)",
+          "similarity": 0.1839,
+          "rerank_score": -11.066410064697266,
+          "text_preview": "Section 17. Complaints and proceedings\n(1) Any worker may present a complaint to the Inspector if the employer fails to comply with any provision of this\nAct.\n(2) The Inspector shall, within thirty da"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "query_index": 3,
+      "query": "What are the consumer rights for defective products?",
+      "type": "factual",
+      "description": "Consumer protection query",
+      "expected_act": "consumer",
+      "num_results": 5,
+      "top_results": [
+        {
+          "rank": 1,
+          "chunk_id": "sample_workers_2024_7c4867b40623",
+          "citation": "Sample Workers Protection Act 2024, Chapter V: WORKPLACE SAFETY, Section 12, (Cleanliness)",
+          "similarity": 0.1802,
+          "rerank_score": -10.983152389526367,
+          "text_preview": "Section 12. Cleanliness\n(1) Every establishment shall be kept clean and free from effluvia arising from any drain, privy or other nuisance.\n(2) The floors of every workroom shall be cleaned at least o"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "sample_workers_2024_8f2d1f4c6bef",
+          "citation": "Sample Workers Protection Act 2024, Chapter VI: PENALTIES AND ENFORCEMENT, Section 15, (Penalties for violations)",
+          "similarity": 0.2357,
+          "rerank_score": -11.013042449951172,
+          "text_preview": "Section 15. Penalties for violations\n(1) Whoever contravenes any provision of this Act or any rule made thereunder shall be punishable with imprisonment for a term which may extend to one year, or wit"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "sample_workers_2024_2dd6a0bac055",
+          "citation": "Sample Workers Protection Act 2024, Section preamble, (Preamble / Preliminary)",
+          "similarity": 0.1939,
+          "rerank_score": -11.15426254272461,
+          "text_preview": "Sample Workers Protection Act, 2024 ? Page 1\n\nTHE SAMPLE WORKERS PROTECTION ACT, 2024\n\nAn Act to provide for the protection of workers' rights and welfare in the People's Republic of Bangladesh.\n\nWher"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "query_index": 4,
+      "query": "What is the punishment for cybercrime?",
+      "type": "factual",
+      "description": "Cyber security penalties",
+      "expected_act": "cyber",
+      "num_results": 5,
+      "top_results": [
+        {
+          "rank": 1,
+          "chunk_id": "sample_workers_2024_8f2d1f4c6bef",
+          "citation": "Sample Workers Protection Act 2024, Chapter VI: PENALTIES AND ENFORCEMENT, Section 15, (Penalties for violations)",
+          "similarity": 0.4776,
+          "rerank_score": -5.408689498901367,
+          "text_preview": "Section 15. Penalties for violations\n(1) Whoever contravenes any provision of this Act or any rule made thereunder shall be punishable with imprisonment for a term which may extend to one year, or wit"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "sample_workers_2024_4db0510ce2a7",
+          "citation": "Sample Workers Protection Act 2024, Chapter I: INTRODUCTION AND DEFINITIONS, Section 2, (Definitions)",
+          "similarity": 0.1831,
+          "rerank_score": -11.186671257019043,
+          "text_preview": "Section 2. Definitions\nIn this Act, unless there is anything repugnant in the subject or context,\n\n(b) \"employer\" means any person who employs, whether directly or through another person, or whether o"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "sample_workers_2024_9736bc975f28",
+          "citation": "Sample Workers Protection Act 2024, Chapter VI: PENALTIES AND ENFORCEMENT, Section 16, (Powers of Inspectors)",
+          "similarity": 0.1486,
+          "rerank_score": -11.19074535369873,
+          "text_preview": "Section 16. Powers of Inspectors\n(1) An Inspector may, for the purpose of carrying out the provisions of this Act:\n(a) enter any premises which is used as an establishment;\n(b) examine any person foun"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "query_index": 5,
+      "query": "My employer hasn't paid me for 3 months. What can I do?",
+      "type": "situational",
+      "description": "Practical labor dispute scenario",
+      "expected_act": "labour",
+      "num_results": 5,
+      "top_results": [
+        {
+          "rank": 1,
+          "chunk_id": "sample_workers_2024_348c0151a2cc",
+          "citation": "Sample Workers Protection Act 2024, Chapter II: EMPLOYMENT CONDITIONS, Section 3, (Terms of employment)",
+          "similarity": 0.3538,
+          "rerank_score": -6.7120256423950195,
+          "text_preview": "Section 3. Terms of employment\n(1) Every employer shall, within thirty days of the employment of a worker, provide the worker with a written contract of employment.\n(2) The contract of employment shal"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "sample_workers_2024_40f5cd25bc5e",
+          "citation": "Sample Workers Protection Act 2024, Chapter II: EMPLOYMENT CONDITIONS, Section 4, (Maximum working hours)",
+          "similarity": 0.2572,
+          "rerank_score": -8.175223350524902,
+          "text_preview": "Section 4. Maximum working hours\n(1) No worker shall be required or allowed to work in an establishment for more than eight hours in any day.\n(2) No worker shall be required or allowed to work for mor"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "sample_workers_2024_ffa5969e779a",
+          "citation": "Sample Workers Protection Act 2024, Chapter VI: PENALTIES AND ENFORCEMENT, Section 17, (Complaints and proceedings)",
+          "similarity": 0.3514,
+          "rerank_score": -8.757661819458008,
+          "text_preview": "Section 17. Complaints and proceedings\n(1) Any worker may present a complaint to the Inspector if the employer fails to comply with any provision of this\nAct.\n(2) The Inspector shall, within thirty da"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "query_index": 6,
+      "query": "My landlord is trying to evict me without notice. What are my rights?",
+      "type": "situational",
+      "description": "Tenant rights scenario",
+      "expected_act": "rent",
+      "num_results": 5,
+      "top_results": [
+        {
+          "rank": 1,
+          "chunk_id": "sample_workers_2024_d299754f640a",
+          "citation": "Sample Workers Protection Act 2024, Chapter V: WORKPLACE SAFETY, Section 14, (Safety of buildings and machinery)",
+          "similarity": 0.2623,
+          "rerank_score": -10.419167518615723,
+          "text_preview": "Section 14. Safety of buildings and machinery\n(1) If it appears to the Inspector that any building or part of a building used as an establishment is in such a condition that it is dangerous to human l"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "sample_workers_2024_8f2d1f4c6bef",
+          "citation": "Sample Workers Protection Act 2024, Chapter VI: PENALTIES AND ENFORCEMENT, Section 15, (Penalties for violations)",
+          "similarity": 0.1809,
+          "rerank_score": -11.13163948059082,
+          "text_preview": "Section 15. Penalties for violations\n(1) Whoever contravenes any provision of this Act or any rule made thereunder shall be punishable with imprisonment for a term which may extend to one year, or wit"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "sample_workers_2024_ffa5969e779a",
+          "citation": "Sample Workers Protection Act 2024, Chapter VI: PENALTIES AND ENFORCEMENT, Section 17, (Complaints and proceedings)",
+          "similarity": 0.2552,
+          "rerank_score": -11.136983871459961,
+          "text_preview": "Section 17. Complaints and proceedings\n(1) Any worker may present a complaint to the Inspector if the employer fails to comply with any provision of this\nAct.\n(2) The Inspector shall, within thirty da"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "query_index": 7,
+      "query": "Someone stole my credit card information online. What law protects me?",
+      "type": "situational",
+      "description": "Digital crime scenario",
+      "expected_act": "cyber",
+      "num_results": 5,
+      "top_results": [
+        {
+          "rank": 1,
+          "chunk_id": "sample_workers_2024_2dd6a0bac055",
+          "citation": "Sample Workers Protection Act 2024, Section preamble, (Preamble / Preliminary)",
+          "similarity": 0.2076,
+          "rerank_score": -10.580364227294922,
+          "text_preview": "Sample Workers Protection Act, 2024 ? Page 1\n\nTHE SAMPLE WORKERS PROTECTION ACT, 2024\n\nAn Act to provide for the protection of workers' rights and welfare in the People's Republic of Bangladesh.\n\nWher"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "sample_workers_2024_8f2d1f4c6bef",
+          "citation": "Sample Workers Protection Act 2024, Chapter VI: PENALTIES AND ENFORCEMENT, Section 15, (Penalties for violations)",
+          "similarity": 0.2263,
+          "rerank_score": -10.870194435119629,
+          "text_preview": "Section 15. Penalties for violations\n(1) Whoever contravenes any provision of this Act or any rule made thereunder shall be punishable with imprisonment for a term which may extend to one year, or wit"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "sample_workers_2024_d4151f9cbdad",
+          "citation": "Sample Workers Protection Act 2024, Chapter I: INTRODUCTION AND DEFINITIONS, Section 1, (Short title, extent and commencement)",
+          "similarity": 0.1457,
+          "rerank_score": -11.05762004852295,
+          "text_preview": "Section 1. Short title, extent and commencement\n(1) This Act may be called the Sample Workers Protection Act, 2024.\n(2) It extends to the whole of Bangladesh.\n(3) It shall come into force on such date"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "query_index": 8,
+      "query": "What are the different types of leave an employee is entitled to?",
+      "type": "comparative",
+      "description": "Comparison of leave types",
+      "expected_act": "labour",
+      "num_results": 5,
+      "top_results": [
+        {
+          "rank": 1,
+          "chunk_id": "sample_workers_2024_348c0151a2cc",
+          "citation": "Sample Workers Protection Act 2024, Chapter II: EMPLOYMENT CONDITIONS, Section 3, (Terms of employment)",
+          "similarity": 0.4355,
+          "rerank_score": -4.944800853729248,
+          "text_preview": "Section 3. Terms of employment\n(1) Every employer shall, within thirty days of the employment of a worker, provide the worker with a written contract of employment.\n(2) The contract of employment shal"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "sample_workers_2024_4db0510ce2a7",
+          "citation": "Sample Workers Protection Act 2024, Chapter I: INTRODUCTION AND DEFINITIONS, Section 2, (Definitions)",
+          "similarity": 0.3476,
+          "rerank_score": -9.203700065612793,
+          "text_preview": "Section 2. Definitions\nIn this Act, unless there is anything repugnant in the subject or context,\n\n(b) \"employer\" means any person who employs, whether directly or through another person, or whether o"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "sample_workers_2024_40f5cd25bc5e",
+          "citation": "Sample Workers Protection Act 2024, Chapter II: EMPLOYMENT CONDITIONS, Section 4, (Maximum working hours)",
+          "similarity": 0.3613,
+          "rerank_score": -9.317829132080078,
+          "text_preview": "Section 4. Maximum working hours\n(1) No worker shall be required or allowed to work in an establishment for more than eight hours in any day.\n(2) No worker shall be required or allowed to work for mor"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "query_index": 9,
+      "query": "What are the penalties for workplace safety violations?",
+      "type": "comparative",
+      "description": "Safety violation penalties",
+      "expected_act": "labour",
+      "num_results": 5,
+      "top_results": [
+        {
+          "rank": 1,
+          "chunk_id": "sample_workers_2024_8f2d1f4c6bef",
+          "citation": "Sample Workers Protection Act 2024, Chapter VI: PENALTIES AND ENFORCEMENT, Section 15, (Penalties for violations)",
+          "similarity": 0.508,
+          "rerank_score": 1.8641612529754639,
+          "text_preview": "Section 15. Penalties for violations\n(1) Whoever contravenes any provision of this Act or any rule made thereunder shall be punishable with imprisonment for a term which may extend to one year, or wit"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "sample_workers_2024_ffa5969e779a",
+          "citation": "Sample Workers Protection Act 2024, Chapter VI: PENALTIES AND ENFORCEMENT, Section 17, (Complaints and proceedings)",
+          "similarity": 0.4141,
+          "rerank_score": -7.054225921630859,
+          "text_preview": "Section 17. Complaints and proceedings\n(1) Any worker may present a complaint to the Inspector if the employer fails to comply with any provision of this\nAct.\n(2) The Inspector shall, within thirty da"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "sample_workers_2024_d299754f640a",
+          "citation": "Sample Workers Protection Act 2024, Chapter V: WORKPLACE SAFETY, Section 14, (Safety of buildings and machinery)",
+          "similarity": 0.3897,
+          "rerank_score": -7.985281944274902,
+          "text_preview": "Section 14. Safety of buildings and machinery\n(1) If it appears to the Inspector that any building or part of a building used as an establishment is in such a condition that it is dangerous to human l"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "query_index": 10,
+      "query": "What does Section 5 say about rest intervals?",
+      "type": "section_specific",
+      "description": "Direct section reference",
+      "expected_act": "labour",
+      "num_results": 5,
+      "top_results": [
+        {
+          "rank": 1,
+          "chunk_id": "sample_workers_2024_348c0151a2cc",
+          "citation": "Sample Workers Protection Act 2024, Chapter II: EMPLOYMENT CONDITIONS, Section 3, (Terms of employment)",
+          "similarity": 0.2844,
+          "rerank_score": -7.237764358520508,
+          "text_preview": "Section 3. Terms of employment\n(1) Every employer shall, within thirty days of the employment of a worker, provide the worker with a written contract of employment.\n(2) The contract of employment shal"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "sample_workers_2024_40f5cd25bc5e",
+          "citation": "Sample Workers Protection Act 2024, Chapter II: EMPLOYMENT CONDITIONS, Section 4, (Maximum working hours)",
+          "similarity": 0.3855,
+          "rerank_score": -7.26962947845459,
+          "text_preview": "Section 4. Maximum working hours\n(1) No worker shall be required or allowed to work in an establishment for more than eight hours in any day.\n(2) No worker shall be required or allowed to work for mor"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "sample_workers_2024_7c4867b40623",
+          "citation": "Sample Workers Protection Act 2024, Chapter V: WORKPLACE SAFETY, Section 12, (Cleanliness)",
+          "similarity": 0.355,
+          "rerank_score": -7.943967819213867,
+          "text_preview": "Section 12. Cleanliness\n(1) Every establishment shall be kept clean and free from effluvia arising from any drain, privy or other nuisance.\n(2) The floors of every workroom shall be cleaned at least o"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "query_index": 11,
+      "query": "What are the fundamental rights of workers in Bangladesh?",
+      "type": "general",
+      "description": "Broad rights-based query",
+      "expected_act": "labour",
+      "num_results": 5,
+      "top_results": [
+        {
+          "rank": 1,
+          "chunk_id": "sample_workers_2024_2dd6a0bac055",
+          "citation": "Sample Workers Protection Act 2024, Section preamble, (Preamble / Preliminary)",
+          "similarity": 0.6267,
+          "rerank_score": 4.143267631530762,
+          "text_preview": "Sample Workers Protection Act, 2024 ? Page 1\n\nTHE SAMPLE WORKERS PROTECTION ACT, 2024\n\nAn Act to provide for the protection of workers' rights and welfare in the People's Republic of Bangladesh.\n\nWher"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "sample_workers_2024_d4151f9cbdad",
+          "citation": "Sample Workers Protection Act 2024, Chapter I: INTRODUCTION AND DEFINITIONS, Section 1, (Short title, extent and commencement)",
+          "similarity": 0.5501,
+          "rerank_score": 0.19965089857578278,
+          "text_preview": "Section 1. Short title, extent and commencement\n(1) This Act may be called the Sample Workers Protection Act, 2024.\n(2) It extends to the whole of Bangladesh.\n(3) It shall come into force on such date"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "sample_workers_2024_40f5cd25bc5e",
+          "citation": "Sample Workers Protection Act 2024, Chapter II: EMPLOYMENT CONDITIONS, Section 4, (Maximum working hours)",
+          "similarity": 0.4739,
+          "rerank_score": -8.405952453613281,
+          "text_preview": "Section 4. Maximum working hours\n(1) No worker shall be required or allowed to work in an establishment for more than eight hours in any day.\n(2) No worker shall be required or allowed to work for mor"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "query_index": 12,
+      "query": "How does the law protect women in the workplace?",
+      "type": "general",
+      "description": "Gender-specific protections",
+      "expected_act": "labour",
+      "num_results": 5,
+      "top_results": [
+        {
+          "rank": 1,
+          "chunk_id": "sample_workers_2024_2dd6a0bac055",
+          "citation": "Sample Workers Protection Act 2024, Section preamble, (Preamble / Preliminary)",
+          "similarity": 0.4235,
+          "rerank_score": -2.1296753883361816,
+          "text_preview": "Sample Workers Protection Act, 2024 ? Page 1\n\nTHE SAMPLE WORKERS PROTECTION ACT, 2024\n\nAn Act to provide for the protection of workers' rights and welfare in the People's Republic of Bangladesh.\n\nWher"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "sample_workers_2024_40f5cd25bc5e",
+          "citation": "Sample Workers Protection Act 2024, Chapter II: EMPLOYMENT CONDITIONS, Section 4, (Maximum working hours)",
+          "similarity": 0.4204,
+          "rerank_score": -4.468313217163086,
+          "text_preview": "Section 4. Maximum working hours\n(1) No worker shall be required or allowed to work in an establishment for more than eight hours in any day.\n(2) No worker shall be required or allowed to work for mor"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "sample_workers_2024_d4151f9cbdad",
+          "citation": "Sample Workers Protection Act 2024, Chapter I: INTRODUCTION AND DEFINITIONS, Section 1, (Short title, extent and commencement)",
+          "similarity": 0.3285,
+          "rerank_score": -6.776791572570801,
+          "text_preview": "Section 1. Short title, extent and commencement\n(1) This Act may be called the Sample Workers Protection Act, 2024.\n(2) It extends to the whole of Bangladesh.\n(3) It shall come into force on such date"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "query_index": 13,
+      "query": "What are the maximum working hours allowed per day?",
+      "type": "factual",
+      "description": "Test with sample document - working hours",
+      "expected_act": "sample",
+      "num_results": 5,
+      "top_results": [
+        {
+          "rank": 1,
+          "chunk_id": "sample_workers_2024_40f5cd25bc5e",
+          "citation": "Sample Workers Protection Act 2024, Chapter II: EMPLOYMENT CONDITIONS, Section 4, (Maximum working hours)",
+          "similarity": 0.6633,
+          "rerank_score": 6.337599754333496,
+          "text_preview": "Section 4. Maximum working hours\n(1) No worker shall be required or allowed to work in an establishment for more than eight hours in any day.\n(2) No worker shall be required or allowed to work for mor"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "sample_workers_2024_348c0151a2cc",
+          "citation": "Sample Workers Protection Act 2024, Chapter II: EMPLOYMENT CONDITIONS, Section 3, (Terms of employment)",
+          "similarity": 0.2775,
+          "rerank_score": -9.772201538085938,
+          "text_preview": "Section 3. Terms of employment\n(1) Every employer shall, within thirty days of the employment of a worker, provide the worker with a written contract of employment.\n(2) The contract of employment shal"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "sample_workers_2024_7c4867b40623",
+          "citation": "Sample Workers Protection Act 2024, Chapter V: WORKPLACE SAFETY, Section 12, (Cleanliness)",
+          "similarity": 0.2365,
+          "rerank_score": -10.54859447479248,
+          "text_preview": "Section 12. Cleanliness\n(1) Every establishment shall be kept clean and free from effluvia arising from any drain, privy or other nuisance.\n(2) The floors of every workroom shall be cleaned at least o"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "query_index": 14,
+      "query": "When must wages be paid to workers?",
+      "type": "factual",
+      "description": "Test with sample document - wage payment",
+      "expected_act": "sample",
+      "num_results": 5,
+      "top_results": [
+        {
+          "rank": 1,
+          "chunk_id": "sample_workers_2024_40f5cd25bc5e",
+          "citation": "Sample Workers Protection Act 2024, Chapter II: EMPLOYMENT CONDITIONS, Section 4, (Maximum working hours)",
+          "similarity": 0.4726,
+          "rerank_score": -0.8423855900764465,
+          "text_preview": "Section 4. Maximum working hours\n(1) No worker shall be required or allowed to work in an establishment for more than eight hours in any day.\n(2) No worker shall be required or allowed to work for mor"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "sample_workers_2024_348c0151a2cc",
+          "citation": "Sample Workers Protection Act 2024, Chapter II: EMPLOYMENT CONDITIONS, Section 3, (Terms of employment)",
+          "similarity": 0.5001,
+          "rerank_score": -1.8942530155181885,
+          "text_preview": "Section 3. Terms of employment\n(1) Every employer shall, within thirty days of the employment of a worker, provide the worker with a written contract of employment.\n(2) The contract of employment shal"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "sample_workers_2024_4db0510ce2a7",
+          "citation": "Sample Workers Protection Act 2024, Chapter I: INTRODUCTION AND DEFINITIONS, Section 2, (Definitions)",
+          "similarity": 0.5237,
+          "rerank_score": -3.42051362991333,
+          "text_preview": "Section 2. Definitions\nIn this Act, unless there is anything repugnant in the subject or context,\n\n(b) \"employer\" means any person who employs, whether directly or through another person, or whether o"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "query_index": 15,
+      "query": "What deductions can be made from worker wages?",
+      "type": "factual",
+      "description": "Test with sample document - wage deductions",
+      "expected_act": "sample",
+      "num_results": 5,
+      "top_results": [
+        {
+          "rank": 1,
+          "chunk_id": "sample_workers_2024_348c0151a2cc",
+          "citation": "Sample Workers Protection Act 2024, Chapter II: EMPLOYMENT CONDITIONS, Section 3, (Terms of employment)",
+          "similarity": 0.3438,
+          "rerank_score": -7.977676868438721,
+          "text_preview": "Section 3. Terms of employment\n(1) Every employer shall, within thirty days of the employment of a worker, provide the worker with a written contract of employment.\n(2) The contract of employment shal"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "sample_workers_2024_40f5cd25bc5e",
+          "citation": "Sample Workers Protection Act 2024, Chapter II: EMPLOYMENT CONDITIONS, Section 4, (Maximum working hours)",
+          "similarity": 0.3938,
+          "rerank_score": -8.22033405303955,
+          "text_preview": "Section 4. Maximum working hours\n(1) No worker shall be required or allowed to work in an establishment for more than eight hours in any day.\n(2) No worker shall be required or allowed to work for mor"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "sample_workers_2024_4db0510ce2a7",
+          "citation": "Sample Workers Protection Act 2024, Chapter I: INTRODUCTION AND DEFINITIONS, Section 2, (Definitions)",
+          "similarity": 0.4523,
+          "rerank_score": -8.395220756530762,
+          "text_preview": "Section 2. Definitions\nIn this Act, unless there is anything repugnant in the subject or context,\n\n(b) \"employer\" means any person who employs, whether directly or through another person, or whether o"
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

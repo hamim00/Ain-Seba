@@ -183,7 +183,7 @@ class IngestionPipeline:
         }
 
         logger.info(
-            f"  [OK] Done: {len(chunks)} chunks, "
+            f"  ✓ Done: {len(chunks)} chunks, "
             f"Quality: {report['quality_score']['score']}/100 "
             f"({report['quality_score']['grade']})"
         )

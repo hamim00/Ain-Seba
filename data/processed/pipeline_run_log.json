@@ -1,0 +1,55 @@
+{
+  "run_date": "2026-02-22T10:36:20.622033",
+  "total_laws": 8,
+  "processed": [],
+  "skipped": [
+    {
+      "act_id": "labour_act_2006",
+      "act_name": "Bangladesh Labour Act 2006",
+      "reason": "PDF not found at D:\\project\\ainseba\\data\\raw\\bangladesh_labour_act_2006.pdf"
+    },
+    {
+      "act_id": "penal_code_1860",
+      "act_name": "The Penal Code 1860",
+      "reason": "PDF not found at D:\\project\\ainseba\\data\\raw\\penal_code_1860.pdf"
+    },
+    {
+      "act_id": "consumer_rights_2009",
+      "act_name": "Consumer Rights Protection Act 2009",
+      "reason": "PDF not found at D:\\project\\ainseba\\data\\raw\\consumer_rights_protection_act_2009.pdf"
+    },
+    {
+      "act_id": "cyber_security_2023",
+      "act_name": "Cyber Security Act 2023",
+      "reason": "PDF not found at D:\\project\\ainseba\\data\\raw\\cyber_security_act_2023.pdf"
+    },
+    {
+      "act_id": "rent_control_1991",
+      "act_name": "The Rent Control Act 1991",
+      "reason": "PDF not found at D:\\project\\ainseba\\data\\raw\\rent_control_act_1991.pdf"
+    },
+    {
+      "act_id": "muslim_family_law_1961",
+      "act_name": "Muslim Family Laws Ordinance 1961",
+      "reason": "PDF not found at D:\\project\\ainseba\\data\\raw\\muslim_family_laws_ordinance_1961.pdf"
+    },
+    {
+      "act_id": "companies_act_1994",
+      "act_name": "The Companies Act 1994",
+      "reason": "PDF not found at D:\\project\\ainseba\\data\\raw\\companies_act_1994.pdf"
+    },
+    {
+      "act_id": "constitution_bd",
+      "act_name": "The Constitution of the People's Republic of Bangladesh",
+      "reason": "PDF not found at D:\\project\\ainseba\\data\\raw\\constitution_of_bangladesh.pdf"
+    }
+  ],
+  "failed": [],
+  "summary": {
+    "processed_count": 0,
+    "skipped_count": 8,
+    "failed_count": 0,
+    "total_chunks": 0,
+    "total_tokens": 0
+  }
+}

@@ -1,66 +1,61 @@
 # AinSeba (আইনসেবা) — Bangladesh Legal Aid RAG Assistant
 
-> **Phase 1: Data Collection & Ingestion Pipeline**
+> **Phase 1 + Phase 2: Data Ingestion → Vector Store & Retrieval**
 
 AinSeba ("Law Service" in Bangla) is a RAG-based legal assistant that helps 170+ million Bangladeshis understand their legal rights by answering questions grounded in actual Bangladesh legislation with section-level citations.
 
 ---
 
-## Phase 1 Overview
-
-Phase 1 builds the **data ingestion pipeline** — the foundation that processes raw Bangladesh law PDFs into clean, metadata-rich chunks ready for embedding and retrieval in later phases.
-
-### What Phase 1 Does
-
-```
-PDF Files → Text Extraction → Cleaning → Metadata-Aware Chunking → JSON/CSV Export → Quality Report
-```
-
-1. **PDF Text Extraction** — Uses PyMuPDF (fitz) to extract text from law PDFs
-2. **Text Cleaning** — Removes noise (headers, footers, page numbers, watermarks, encoding artifacts)
-3. **Metadata-Aware Chunking** — Splits documents respecting legal structure (Part → Chapter → Section) with rich metadata
-4. **Export** — Saves chunks as JSON (for Phase 2 embedding) and CSV (for inspection)
-5. **Quality Report** — Generates automated quality assessment with scoring
-
----
-
-## Project Structure (Phase 1)
+## Project Structure (Phase 1 + 2)
 
 ```
 ainseba/
-├── README.md                          # This file
-├── requirements.txt                   # Python dependencies
-├── .env.example                       # Environment config template
-├── .gitignore                         # Git ignore rules
+├── README.md
+├── requirements.txt                   # Phase 1 dependencies
+├── requirements-phase2.txt            # Phase 2 dependencies (includes Phase 1)
+├── .env.example                       # Environment config (API keys, settings)
+├── .gitignore
 │
 ├── data/
-│   ├── raw/                           # Original law PDFs go here
-│   │   └── .gitkeep_readme
-│   └── processed/                     # Pipeline output (JSON, CSV, reports)
-│       └── .gitkeep_readme
+│   ├── raw/                           # Original law PDFs
+│   └── processed/                     # Phase 1 output (JSON chunks, CSV, reports)
 │
 ├── src/
 │   ├── __init__.py
-│   └── config.py                      # Central configuration & law registry
+│   ├── config.py                      # Central configuration & law registry
+│   │
+│   ├── vectorstore/                   # ⭐ Phase 2: Vector Store
+│   │   ├── __init__.py
+│   │   ├── chroma_store.py            # ChromaDB wrapper (persistent storage)
+│   │   ├── embeddings.py              # OpenAI text-embedding-3-small wrapper
+│   │   └── populate.py                # Loads Phase 1 chunks → embeds → stores
+│   │
+│   └── retrieval/                     # ⭐ Phase 2: Retrieval
+│       ├── __init__.py
+│       ├── retriever.py               # Full retrieval pipeline (embed → search → rerank)
+│       └── reranker.py                # Cross-encoder reranker (ms-marco-MiniLM)
 │
 ├── scripts/
 │   ├── __init__.py
-│   ├── run_pipeline.py                # CLI entry point (main runner)
-│   └── ingestion/
-│       ├── __init__.py
-│       ├── pdf_extractor.py           # PDF → raw text (PyMuPDF)
-│       ├── text_cleaner.py            # Noise removal & normalization
-│       ├── chunker.py                 # Metadata-aware document chunking
-│       ├── quality_report.py          # Chunk quality assessment
-│       ├── pipeline.py                # Orchestrator (ties everything together)
-│       ├── create_sample_pdf.py       # Test PDF generator
-│       └── download_laws.py           # PDF download guide & checker
+│   ├── run_pipeline.py                # Phase 1 CLI (PDF → chunks)
+│   ├── run_vectorstore.py             # ⭐ Phase 2 CLI (embed → store → query)
+│   ├── test_retrieval.py              # ⭐ Retrieval quality tests (15 sample queries)
+│   └── ingestion/                     # Phase 1 modules
+│       ├── pdf_extractor.py
+│       ├── text_cleaner.py
+│       ├── chunker.py
+│       ├── pipeline.py
+│       ├── quality_report.py
+│       ├── create_sample_pdf.py
+│       └── download_laws.py
 │
 ├── tests/
 │   ├── __init__.py
-│   └── test_ingestion.py             # Unit + integration tests
+│   ├── test_ingestion.py              # 31 Phase 1 tests
+│   └── test_vectorstore.py            # ⭐ 27 Phase 2 tests
 │
-└── docs/                              # Documentation
+├── chroma_db/                         # ⭐ ChromaDB persistent storage (auto-created)
+└── docs/
 ```
 
 ---
@@ -72,312 +67,303 @@ ainseba/
 - Python 3.10+ (recommended: 3.11 or 3.12)
 - pip (Python package manager)
 - Git
+- **OpenAI API key** (required for Phase 2 — embeddings)
 
 ### Step 1: Clone & Navigate
 
 ```bash
-# If starting fresh
-mkdir ainseba && cd ainseba
-
-# Or if you have the zip
-unzip ainseba-phase1.zip
+unzip ainseba-phase2.zip
 cd ainseba
 ```
 
 ### Step 2: Create Virtual Environment
 
 ```bash
-# Create virtual environment
 python -m venv venv
 
-# Activate it
-# On Linux/Mac:
-source venv/bin/activate
-# On Windows:
-venv\Scripts\activate
+# Activate:
+source venv/bin/activate        # Linux/Mac
+# venv\Scripts\activate         # Windows
 ```
 
 ### Step 3: Install Dependencies
 
 ```bash
+# Phase 1 only:
 pip install -r requirements.txt
+
+# Phase 1 + Phase 2 (recommended):
+pip install -r requirements-phase2.txt
 ```
+
+> **Note:** Phase 2 installs PyTorch (CPU), sentence-transformers, and chromadb.
+> First install may take a few minutes.
 
 ### Step 4: Setup Environment
 
 ```bash
-# Copy the example env file
 cp .env.example .env
+```
 
-# Edit .env if you need to change any settings (defaults work fine)
+**Edit `.env` and add your OpenAI API key:**
+```
+OPENAI_API_KEY=sk-your-actual-key-here
 ```
 
 ### Step 5: Verify Installation
 
 ```bash
-# Run tests to verify everything works
-pytest tests/test_ingestion.py -v
-```
-
-Expected output:
-```
-tests/test_ingestion.py::TestTextCleaner::test_removes_page_numbers PASSED
-tests/test_ingestion.py::TestTextCleaner::test_removes_gazette_headers PASSED
-tests/test_ingestion.py::TestLegalStructureParser::test_finds_sections PASSED
-tests/test_ingestion.py::TestMetadataAwareChunker::test_chunks_simple_document PASSED
-... (all tests should pass)
+# Run all tests (58 total: 31 Phase 1 + 27 Phase 2)
+pytest tests/ -v
 ```
 
 ---
 
-## Running the Pipeline
-
-### Quick Test (No PDFs needed!)
-
-Test the entire pipeline with a generated sample PDF:
+## Phase 1: Data Ingestion (Quick Reference)
 
 ```bash
+# Test pipeline with sample PDF (no downloads needed)
 python scripts/run_pipeline.py --sample
-```
 
-**Expected output:**
-```
-🧪 Running pipeline with SAMPLE PDF...
-
-✓ Sample PDF created: data/raw/sample_workers_protection_act_2024.pdf
-  Pages: 4
-  Size: 12.3 KB
-
-[1/5] Extracting text from PDF...
-  Extracted 4 pages, 8,234 characters
-[2/5] Cleaning extracted text...
-  Cleaned: 8,234 → 7,891 characters (4.2% noise removed)
-[3/5] Chunking with metadata extraction...
-  Found 22 structural markers
-  Created 17 chunks (avg 87 tokens/chunk)
-[4/5] Exporting processed data...
-  JSON saved: data/processed/sample_workers_2024_chunks.json
-  CSV saved: data/processed/sample_workers_2024_chunks.csv
-  Cleaned text saved: data/processed/sample_workers_2024_cleaned.txt
-[5/5] Generating quality report...
-
-✅ Sample pipeline run COMPLETE!
-📊 Quality Score: XX/100
-📦 Total Chunks: 17
-🔤 Total Tokens: ~1,500
-```
-
-### Process Real Law PDFs
-
-#### Step 1: Download PDFs
-
-```bash
-# See download instructions and check what you have
+# Check which real PDFs you need
 python scripts/run_pipeline.py --check
-```
 
-This shows which PDFs you need and where to save them. Download PDFs from [bdlaws.minlaw.gov.bd](http://bdlaws.minlaw.gov.bd) using the browser Print-to-PDF method.
-
-#### Step 2: Process All Available PDFs
-
-```bash
-# Process everything that's been downloaded
+# Process all downloaded PDFs
 python scripts/run_pipeline.py --all
 
-# Or process only high-priority laws first
-python scripts/run_pipeline.py --priority P0
-```
-
-#### Step 3: Process a Single PDF
-
-```bash
-python scripts/run_pipeline.py --file data/raw/bangladesh_labour_act_2006.pdf
-```
-
-#### Step 4: View Quality Reports
-
-```bash
-python scripts/run_pipeline.py --report
+# Process a single PDF
+python scripts/run_pipeline.py --file data/raw/penal_code_1860.pdf
 ```
 
 ---
 
-## Understanding the Output
+## Phase 2: Vector Store & Retrieval
 
-After running the pipeline, `data/processed/` will contain:
-
-| File | Purpose |
-|------|---------|
-| `{act_id}_chunks.json` | **Primary output** — chunks with full metadata (used in Phase 2) |
-| `{act_id}_chunks.csv` | CSV version for spreadsheet inspection |
-| `{act_id}_cleaned.txt` | Full cleaned text (for debugging) |
-| `{act_id}_quality_report.json` | Quality assessment report |
-| `all_chunks_combined.json` | All chunks from all laws in one file |
-| `all_chunks_combined.csv` | Combined CSV |
-| `combined_quality_report.json` | Overall quality report |
-| `pipeline_run_log.json` | Pipeline execution log |
-| `pipeline.log` | Detailed execution log |
-
-### Chunk JSON Format
-
-Each chunk in the JSON looks like:
-
-```json
-{
-  "chunk_id": "labour_act_2006_a1b2c3d4e5f6",
-  "text": "Section 42. Maximum working hours\n(1) No worker shall be required or allowed to work in an establishment for more than eight hours in any day...",
-  "token_count": 342,
-  "chunk_index": 15,
-  "act_name": "Bangladesh Labour Act 2006",
-  "act_id": "labour_act_2006",
-  "part": "Part II: Employment Conditions",
-  "chapter": "Chapter III: Working Hours",
-  "section_number": "42",
-  "section_title": "Maximum working hours",
-  "category": "Employment",
-  "year": 2006,
-  "language": "english",
-  "page_numbers": []
-}
-```
-
-### Quality Report
-
-The quality report scores chunks on:
-
-- **Token Distribution** — Are chunks within the 100-800 token target range?
-- **Metadata Completeness** — Do chunks have act_name, section_number, etc.?
-- **Content Issues** — Empty chunks, very short/long chunks, header-only chunks?
-- **Quality Score** — 0-100 overall score with A-F grade
-
----
-
-## Architecture (Phase 1)
+### What Phase 2 Does
 
 ```
-┌──────────────────────────────────────────────────────────────┐
-│                    DATA INGESTION PIPELINE                     │
-│                                                                │
-│  ┌─────────────┐    ┌──────────────┐    ┌─────────────────┐  │
-│  │  PDF Files   │───→│ PDFExtractor │───→│  Raw Text       │  │
-│  │  (data/raw/) │    │  (PyMuPDF)   │    │  (per page)     │  │
-│  └─────────────┘    └──────────────┘    └───────┬─────────┘  │
-│                                                   │            │
-│                                          ┌────────▼────────┐  │
-│                                          │  TextCleaner    │  │
-│                                          │  - Remove noise │  │
-│                                          │  - Fix encoding │  │
-│                                          │  - Normalize    │  │
-│                                          └────────┬────────┘  │
-│                                                   │            │
-│                                          ┌────────▼────────┐  │
-│                                          │ StructureParser │  │
-│                                          │ - Find Parts    │  │
-│                                          │ - Find Chapters │  │
-│                                          │ - Find Sections │  │
-│                                          └────────┬────────┘  │
-│                                                   │            │
-│                                          ┌────────▼────────┐  │
-│                                          │ MetadataAware   │  │
-│                                          │ Chunker         │  │
-│                                          │ - Section-level │  │
-│                                          │ - Token limits  │  │
-│                                          │ - Overlap       │  │
-│                                          └────────┬────────┘  │
-│                                                   │            │
-│  ┌─────────────────────────────────────────────────┤           │
-│  │                                                 │           │
-│  ▼                          ▼                      ▼           │
-│  ┌──────────┐  ┌────────────────┐  ┌───────────────────────┐  │
-│  │  JSON    │  │  CSV           │  │  Quality Report       │  │
-│  │  Chunks  │  │  (inspection)  │  │  (score + analysis)   │  │
-│  └──────────┘  └────────────────┘  └───────────────────────┘  │
-│                                                                │
-│  Output: data/processed/                                       │
-└──────────────────────────────────────────────────────────────┘
+Phase 1 JSON Chunks → OpenAI Embeddings → ChromaDB Storage → Similarity Search → Cross-Encoder Reranking
 ```
 
-### Component Details
+1. **Embedding Generation** — Converts text chunks to vectors using `text-embedding-3-small`
+2. **ChromaDB Storage** — Stores embeddings with metadata in persistent ChromaDB
+3. **Similarity Search** — Finds relevant chunks via cosine similarity
+4. **Metadata Filtering** — Filter by act, category, year range
+5. **Cross-Encoder Reranking** — Re-scores top candidates with `ms-marco-MiniLM-L-6-v2` for precision
 
-| Component | File | Responsibility |
-|-----------|------|----------------|
-| **Config** | `src/config.py` | Law registry, paths, chunking params |
-| **PDFExtractor** | `scripts/ingestion/pdf_extractor.py` | PyMuPDF text extraction, page-by-page |
-| **TextCleaner** | `scripts/ingestion/text_cleaner.py` | Noise removal, encoding fixes, normalization |
-| **LegalStructureParser** | `scripts/ingestion/chunker.py` | Regex-based Part/Chapter/Section detection |
-| **MetadataAwareChunker** | `scripts/ingestion/chunker.py` | Token-bounded chunking with metadata |
-| **QualityReporter** | `scripts/ingestion/quality_report.py` | Automated quality scoring |
-| **IngestionPipeline** | `scripts/ingestion/pipeline.py` | Orchestrates all stages |
-| **CLI Runner** | `scripts/run_pipeline.py` | Command-line interface |
+### Running Phase 2
+
+#### Step 1: Populate the Vector Store
+
+```bash
+# Populate with sample data (quick test)
+python scripts/run_vectorstore.py --populate-sample
+
+# Populate with all processed chunks
+python scripts/run_vectorstore.py --populate
+
+# Check what's stored
+python scripts/run_vectorstore.py --stats
+```
+
+**Expected output (sample):**
+```
+[1/2] Generating embeddings for 10 chunks...
+  Batch 1/1 (10 texts)
+  Embedding dimension: 1536
+  Total tokens used: ~800
+
+[2/2] Storing in ChromaDB...
+  Upserted batch: 10/10
+
+✅ Vector store population complete!
+  Total documents in store: 10
+  Acts: sample_workers_2024
+  Tokens used: ~800
+```
+
+#### Step 2: Test Retrieval Quality
+
+```bash
+# Run all 15 sample queries
+python scripts/test_retrieval.py
+
+# Test a single query
+python scripts/run_vectorstore.py --query "What is the penalty for theft?"
+
+# Interactive mode (type queries, see results)
+python scripts/run_vectorstore.py --interactive
+
+# Without reranker (faster, less precise)
+python scripts/run_vectorstore.py --query "working hours" --no-reranker
+```
+
+**Expected retrieval output:**
+```
+--- Result 1 ---
+  Citation:   Labour Act 2006, Chapter III, Section 42 (Maximum working hours)
+  Similarity: 0.8923
+  Rerank:     2.4567
+  Text:       No worker shall be required or allowed to work...
+```
+
+#### Step 3: Reset & Re-populate (if needed)
+
+```bash
+python scripts/run_vectorstore.py --reset
+python scripts/run_vectorstore.py --populate
+```
+
+### Retrieval Pipeline Architecture
+
+```
+┌──────────────────────────────────────────────────────────────────┐
+│                    RETRIEVAL PIPELINE                              │
+│                                                                    │
+│  User Query                                                        │
+│      │                                                             │
+│      ▼                                                             │
+│  ┌─────────────────────┐                                          │
+│  │  EmbeddingGenerator │   OpenAI text-embedding-3-small          │
+│  │  (embed query)      │   → 1536-dim vector                     │
+│  └──────────┬──────────┘                                          │
+│             │                                                      │
+│             ▼                                                      │
+│  ┌─────────────────────┐   ┌────────────────────────────────┐    │
+│  │   ChromaDB Query    │──→│  Optional Metadata Filters     │    │
+│  │   (cosine search)   │   │  • act_id = "labour_act_2006"  │    │
+│  │   top_k = 10        │   │  • category = "Employment"     │    │
+│  └──────────┬──────────┘   │  • year >= 2000                │    │
+│             │               └────────────────────────────────┘    │
+│             ▼                                                      │
+│  ┌─────────────────────┐                                          │
+│  │  Cross-Encoder      │   ms-marco-MiniLM-L-6-v2                │
+│  │  Reranker           │   Scores each (query, doc) pair         │
+│  │  top_n = 5          │   → More precise ranking                │
+│  └──────────┬──────────┘                                          │
+│             │                                                      │
+│             ▼                                                      │
+│  ┌─────────────────────┐                                          │
+│  │  RetrievalResult[]  │   Each result contains:                  │
+│  │  • text             │   • similarity_score (0-1)               │
+│  │  • citation         │   • rerank_score                         │
+│  │  • metadata         │   • act, chapter, section info           │
+│  └─────────────────────┘                                          │
+└──────────────────────────────────────────────────────────────────┘
+```
+
+### Key Components
+
+| Component | File | Purpose |
+|-----------|------|---------|
+| **EmbeddingGenerator** | `src/vectorstore/embeddings.py` | OpenAI embedding wrapper with batching & retries |
+| **ChromaStore** | `src/vectorstore/chroma_store.py` | ChromaDB wrapper with metadata filtering |
+| **Populate** | `src/vectorstore/populate.py` | Loads Phase 1 JSON → embeds → stores |
+| **LegalRetriever** | `src/retrieval/retriever.py` | Full pipeline: embed → search → rerank |
+| **CrossEncoderReranker** | `src/retrieval/reranker.py` | Cross-encoder reranking for precision |
+
+### Metadata Filtering Examples
+
+```python
+from src.retrieval.retriever import LegalRetriever
+
+# Search within a specific act
+results = retriever.retrieve("working hours", act_id="labour_act_2006")
+
+# Search by legal category
+results = retriever.retrieve("punishment", category="Criminal Law")
+
+# Search modern laws only
+results = retriever.retrieve("digital crimes", year_min=2000)
+
+# Direct section lookup (no embedding needed)
+results = retriever.search_by_section("labour_act_2006", section_number="42")
+```
+
+### Configuration
+
+All Phase 2 settings are in `.env`:
+
+| Setting | Default | Description |
+|---------|---------|-------------|
+| `OPENAI_API_KEY` | (required) | Your OpenAI API key |
+| `EMBEDDING_MODEL` | `text-embedding-3-small` | OpenAI embedding model |
+| `CHROMA_PERSIST_DIR` | `chroma_db` | ChromaDB storage directory |
+| `CHROMA_COLLECTION_NAME` | `ainseba_laws` | Collection name |
+| `RETRIEVAL_TOP_K` | `10` | Candidates from vector search |
+| `RERANK_TOP_N` | `5` | Final results after reranking |
+| `RERANKER_MODEL` | `cross-encoder/ms-marco-MiniLM-L-6-v2` | Cross-encoder model |
 
 ---
 
 ## Key Design Decisions
 
-1. **Section-Level Chunking** — Instead of naive fixed-size splitting, we parse legal structure (Part → Chapter → Section) so each chunk represents a coherent legal concept. This dramatically improves retrieval quality in Phase 2.
+### Phase 1
+1. **Section-Level Chunking** — Parses legal structure (Part → Chapter → Section) so each chunk is a coherent legal concept
+2. **Rich Metadata** — Every chunk carries act_name, chapter, section_number, category, year
+3. **Token-Based Sizing** — Uses tiktoken for accurate chunk sizing matching the embedding model
+4. **Quality Scoring** — Automated reports catch issues early
 
-2. **Rich Metadata** — Every chunk carries `act_name`, `chapter`, `section_number`, `section_title`, `category`, and `year`. This enables metadata filtering during retrieval (e.g., "search only in Labour Act, Chapter III").
-
-3. **Token-Based Sizing** — Chunks are sized by tokens (not characters) using tiktoken, matching the tokenizer used by the embedding model (text-embedding-3-small) for accurate sizing.
-
-4. **Overlap** — 100-token overlap between chunks ensures no information is lost at chunk boundaries.
-
-5. **Quality Scoring** — Automated reports catch issues early (too-short chunks, missing metadata, encoding problems) before embedding.
+### Phase 2
+5. **Two-Stage Retrieval** — Fast vector search (top 10) → precise cross-encoder reranking (top 5). This balances speed and accuracy.
+6. **Metadata Filtering** — ChromaDB's native metadata filters enable scoping searches to specific acts, categories, or year ranges before vector similarity
+7. **Persistent Storage** — ChromaDB persists to disk so you don't need to re-embed after restarts
+8. **Batch Embedding** — Efficient API usage with configurable batch sizes and retry logic
+9. **Citation Generation** — Each result auto-generates a citation string: "Labour Act 2006, Chapter III, Section 42 (Maximum working hours)"
 
 ---
 
 ## Troubleshooting
 
-### "No structural markers found"
-The cleaner or PDF extraction may have altered section markers. Check:
+### "OPENAI_API_KEY not set"
 ```bash
-# View the cleaned text to inspect
-cat data/processed/{act_id}_cleaned.txt | head -100
+# Create .env file
+cp .env.example .env
+# Edit and add your key:
+# OPENAI_API_KEY=sk-your-key-here
 ```
 
-### Very low quality score
-- Check the quality report for specific issues
-- The PDF might be scanned (image-only) — PyMuPDF can't extract text from images
-- Try a different PDF source or use OCR
+### "No chunks found"
+Run Phase 1 first: `python scripts/run_pipeline.py --sample`
 
-### Tests failing
+### Cross-encoder model download fails
+The reranker downloads on first use (~80MB). If it fails:
 ```bash
-# Run with verbose output
-pytest tests/test_ingestion.py -v --tb=long
+# Use without reranker
+python scripts/run_vectorstore.py --query "test" --no-reranker
 ```
 
-### Import errors
-Make sure you're in the project root and virtual environment is activated:
+### ChromaDB errors
 ```bash
-cd ainseba
-source venv/bin/activate  # Linux/Mac
+# Reset and re-populate
+python scripts/run_vectorstore.py --reset
+python scripts/run_vectorstore.py --populate
 ```
 
 ---
 
-## What's Next (Phase 2)
+## What's Next (Phase 3)
 
-Phase 2 will take the JSON chunks produced here and:
-1. Generate embeddings using `text-embedding-3-small`
-2. Store in ChromaDB with metadata
-3. Build retrieval functions with metadata filtering
-4. Add a cross-encoder reranker
-5. Test retrieval quality
-
-The primary input for Phase 2 is `data/processed/all_chunks_combined.json`.
+Phase 3 will connect retrieval to GPT-4o-mini with a crafted prompt to generate citation-grounded answers:
+1. Design system prompt with legal assistant role
+2. Build LangChain RAG chain
+3. Implement conversation memory
+4. Add source document tracking
+5. Test with diverse query types
 
 ---
 
-## Tech Stack (Phase 1)
+## Tech Stack
 
-| Tool | Version | Purpose |
-|------|---------|---------|
-| Python | 3.10+ | Runtime |
-| PyMuPDF | 1.24.14 | PDF text extraction |
-| tiktoken | 0.7.0 | Token counting |
-| pandas | 2.2.3 | CSV export |
-| rich | 13.9.4 | Terminal output |
-| pytest | 8.3.3 | Testing |
+| Tool | Purpose | Phase |
+|------|---------|-------|
+| PyMuPDF | PDF text extraction | 1 |
+| tiktoken | Token counting | 1 |
+| rich | Terminal output | 1, 2 |
+| pytest | Testing | 1, 2 |
+| **OpenAI** | `text-embedding-3-small` embeddings | **2** |
+| **ChromaDB** | Vector database (persistent) | **2** |
+| **sentence-transformers** | Cross-encoder reranker | **2** |
 
 ---
 
