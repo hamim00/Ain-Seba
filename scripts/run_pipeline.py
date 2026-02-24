@@ -26,13 +26,21 @@ from src.config import RAW_DATA_DIR, PROCESSED_DATA_DIR, LAW_REGISTRY
 
 def setup_logging(level: str = "INFO"):
     """Configure logging with clean formatting."""
+    PROCESSED_DATA_DIR.mkdir(parents=True, exist_ok=True)
+
     logging.basicConfig(
         level=getattr(logging, level.upper(), logging.INFO),
         format="%(asctime)s | %(levelname)-7s | %(message)s",
         datefmt="%H:%M:%S",
         handlers=[
             logging.StreamHandler(sys.stdout),
-            logging.FileHandler(PROCESSED_DATA_DIR / "pipeline.log", mode="a"),
+            # IMPORTANT: force UTF-8 so symbols like ✓ → ⚠ don't crash on Windows
+            logging.FileHandler(
+                PROCESSED_DATA_DIR / "pipeline.log",
+                mode="a",
+                encoding="utf-8",
+                errors="replace",
+            ),
         ],
     )
 
@@ -55,7 +63,7 @@ def run_sample():
     # Step 3: Show quality report
     if result["status"] == "success":
         report_path = result["output_files"]["quality_report"]
-        with open(report_path, "r") as f:
+        with open(report_path, "r", encoding="utf-8") as f:
             report = json.load(f)
         print_report_summary(report)
 
@@ -113,7 +121,7 @@ def run_single(pdf_path: str):
 
     if result["status"] == "success":
         report_path = result["output_files"]["quality_report"]
-        with open(report_path, "r") as f:
+        with open(report_path, "r", encoding="utf-8") as f:
             report = json.load(f)
         print_report_summary(report)
 
@@ -142,7 +150,7 @@ def view_reports():
     print(f"\nFound {len(report_files)} quality report(s):\n")
 
     for report_file in sorted(report_files):
-        with open(report_file, "r") as f:
+        with open(report_file, "r", encoding="utf-8") as f:
             report = json.load(f)
         print_report_summary(report)
         print()
@@ -175,14 +183,10 @@ Examples:
     group.add_argument("--report", action="store_true", help="View quality reports")
 
     parser.add_argument("--log-level", default="INFO", choices=["DEBUG", "INFO", "WARNING", "ERROR"])
-
     args = parser.parse_args()
 
-    # Setup
-    PROCESSED_DATA_DIR.mkdir(parents=True, exist_ok=True)
     setup_logging(args.log_level)
 
-    # Route to the right function
     if args.sample:
         run_sample()
     elif args.all:

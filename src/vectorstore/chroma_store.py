@@ -15,15 +15,22 @@ logger = logging.getLogger(__name__)
 
 # Metadata fields that ChromaDB can filter on
 FILTERABLE_METADATA_FIELDS = [
-    "act_name", "act_id", "part", "chapter",
-    "section_number", "section_title", "category", "year", "language",
+    "act_name",
+    "act_id",
+    "part",
+    "chapter",
+    "section_number",
+    "section_title",
+    "category",
+    "year",
+    "language",
 ]
 
 
 class ChromaStore:
     """
     ChromaDB wrapper for AinSeba law document embeddings.
-    
+
     Features:
     - Persistent storage (survives restarts)
     - Metadata-based filtering (by act, chapter, section, category, year)
@@ -175,7 +182,7 @@ class ChromaStore:
             where: Optional metadata filter.
 
         Returns:
-            List of result dicts with: chunk_id, text, metadata, distance, score.
+            List of result dicts with: chunk_id, text, metadata, distance, similarity_score.
         """
         query_embedding = embedding_fn(query_text)
         raw_results = self.query(
@@ -183,7 +190,14 @@ class ChromaStore:
             top_k=top_k,
             where=where,
         )
+        return self.format_results(raw_results)
 
+    def format_results(self, raw_results: dict) -> list[dict]:
+        """
+        Public formatter for raw ChromaDB query results.
+
+        The test suite expects this method to exist.
+        """
         return self._format_results(raw_results)
 
     def get_stats(self) -> dict:
@@ -236,11 +250,13 @@ class ChromaStore:
 
         chunks = []
         for i, doc_id in enumerate(results["ids"]):
-            chunks.append({
-                "chunk_id": doc_id,
-                "text": results["documents"][i],
-                "metadata": results["metadatas"][i],
-            })
+            chunks.append(
+                {
+                    "chunk_id": doc_id,
+                    "text": results["documents"][i],
+                    "metadata": results["metadatas"][i],
+                }
+            )
 
         return chunks
 
@@ -297,12 +313,14 @@ class ChromaStore:
             # Convert cosine distance to similarity score (0-1)
             similarity = 1 - distance
 
-            results.append({
-                "chunk_id": raw_results["ids"][0][i],
-                "text": raw_results["documents"][0][i],
-                "metadata": raw_results["metadatas"][0][i],
-                "distance": round(distance, 4),
-                "similarity_score": round(similarity, 4),
-            })
+            results.append(
+                {
+                    "chunk_id": raw_results["ids"][0][i],
+                    "text": raw_results["documents"][0][i],
+                    "metadata": raw_results["metadatas"][0][i],
+                    "distance": round(distance, 4),
+                    "similarity_score": round(similarity, 4),
+                }
+            )
 
         return results

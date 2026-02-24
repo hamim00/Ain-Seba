@@ -30,3 +30,8 @@ transformers==4.46.3
 tokenizers==0.20.3
 torch==2.5.1
 
+
+# --- Phase 3: RAG Chain & LLM ---
+langchain==0.3.13
+langchain-openai==0.2.14
+langchain-core==0.3.28

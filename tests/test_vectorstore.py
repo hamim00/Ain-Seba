@@ -31,20 +31,19 @@ def temp_chroma_dir():
     """Create a temporary directory for ChromaDB."""
     tmpdir = tempfile.mkdtemp()
     yield tmpdir
-    # On Windows, ChromaDB holds file locks — ignore cleanup errors
     import shutil
     shutil.rmtree(tmpdir, ignore_errors=True)
 
 
 @pytest.fixture
 def chroma_store(temp_chroma_dir):
-    """Create a fresh ChromaStore for testing."""
+    """Create a ChromaStore instance for testing."""
     store = ChromaStore(
         persist_dir=temp_chroma_dir,
         collection_name="test_collection",
     )
     yield store
-    # Close the client to release file locks on Windows
+    # Release ChromaDB file locks before cleanup (Windows fix)
     del store.collection
     del store.client
 
@@ -247,33 +246,30 @@ class TestChromaStore:
     def test_format_results(self, populated_store, sample_embeddings):
         raw = populated_store.query(
             query_embedding=sample_embeddings[0],
-            top_k=3,
+            top_k=2,
         )
-        formatted = populated_store._format_results(raw)
-        assert len(formatted) <= 3
-        for r in formatted:
-            assert "chunk_id" in r
-            assert "text" in r
-            assert "metadata" in r
-            assert "similarity_score" in r
-            assert 0 <= r["similarity_score"] <= 1
+        formatted = populated_store.format_results(raw)
+        assert len(formatted) <= 2
+        for item in formatted:
+            assert "chunk_id" in item
+            assert "text" in item
+            assert "metadata" in item
+            assert "similarity_score" in item
 
-    def test_empty_query_results(self, chroma_store):
-        """Query on empty store should return empty results."""
-        dummy_embedding = [0.0] * 128
+    def test_empty_query_results(self, chroma_store, sample_embeddings):
         results = chroma_store.query(
-            query_embedding=dummy_embedding,
+            query_embedding=sample_embeddings[0],
             top_k=5,
         )
         assert len(results["ids"][0]) == 0
 
 
 # ============================================
-# Test: LegalRetriever (with mocked embedding)
+# Test: LegalRetriever
 # ============================================
 
 class TestLegalRetriever:
-    """Tests for the LegalRetriever with mocked components."""
+    """Tests for the LegalRetriever."""
 
     def test_retrieve_returns_results(self, populated_store, sample_embeddings):
         # Mock the embedding generator

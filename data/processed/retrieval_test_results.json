@@ -1,5 +1,5 @@
 {
-  "test_date": "2026-02-22T10:38:16.168096",
+  "test_date": "2026-02-24T01:03:56.958787",
   "total_queries": 15,
   "passed": 3,
   "pass_rate": 20.0,
@@ -16,7 +16,7 @@
           "rank": 1,
           "chunk_id": "sample_workers_2024_40f5cd25bc5e",
           "citation": "Sample Workers Protection Act 2024, Chapter II: EMPLOYMENT CONDITIONS, Section 4, (Maximum working hours)",
-          "similarity": 0.6305,
+          "similarity": 0.6306,
           "rerank_score": 4.362232208251953,
           "text_preview": "Section 4. Maximum working hours\n(1) No worker shall be required or allowed to work in an establishment for more than eight hours in any day.\n(2) No worker shall be required or allowed to work for mor"
         },
@@ -24,7 +24,7 @@
           "rank": 2,
           "chunk_id": "sample_workers_2024_348c0151a2cc",
           "citation": "Sample Workers Protection Act 2024, Chapter II: EMPLOYMENT CONDITIONS, Section 3, (Terms of employment)",
-          "similarity": 0.2446,
+          "similarity": 0.2445,
           "rerank_score": -10.156631469726562,
           "text_preview": "Section 3. Terms of employment\n(1) Every employer shall, within thirty days of the employment of a worker, provide the worker with a written contract of employment.\n(2) The contract of employment shal"
         },
@@ -32,7 +32,7 @@
           "rank": 3,
           "chunk_id": "sample_workers_2024_7c4867b40623",
           "citation": "Sample Workers Protection Act 2024, Chapter V: WORKPLACE SAFETY, Section 12, (Cleanliness)",
-          "similarity": 0.2093,
+          "similarity": 0.2094,
           "rerank_score": -10.910346031188965,
           "text_preview": "Section 12. Cleanliness\n(1) Every establishment shall be kept clean and free from effluvia arising from any drain, privy or other nuisance.\n(2) The floors of every workroom shall be cleaned at least o"
         }
@@ -86,7 +86,7 @@
           "rank": 1,
           "chunk_id": "sample_workers_2024_7c4867b40623",
           "citation": "Sample Workers Protection Act 2024, Chapter V: WORKPLACE SAFETY, Section 12, (Cleanliness)",
-          "similarity": 0.1802,
+          "similarity": 0.18,
           "rerank_score": -10.983152389526367,
           "text_preview": "Section 12. Cleanliness\n(1) Every establishment shall be kept clean and free from effluvia arising from any drain, privy or other nuisance.\n(2) The floors of every workroom shall be cleaned at least o"
         },
@@ -102,7 +102,7 @@
           "rank": 3,
           "chunk_id": "sample_workers_2024_2dd6a0bac055",
           "citation": "Sample Workers Protection Act 2024, Section preamble, (Preamble / Preliminary)",
-          "similarity": 0.1939,
+          "similarity": 0.194,
           "rerank_score": -11.15426254272461,
           "text_preview": "Sample Workers Protection Act, 2024 ? Page 1\n\nTHE SAMPLE WORKERS PROTECTION ACT, 2024\n\nAn Act to provide for the protection of workers' rights and welfare in the People's Republic of Bangladesh.\n\nWher"
         }
@@ -129,7 +129,7 @@
           "rank": 2,
           "chunk_id": "sample_workers_2024_4db0510ce2a7",
           "citation": "Sample Workers Protection Act 2024, Chapter I: INTRODUCTION AND DEFINITIONS, Section 2, (Definitions)",
-          "similarity": 0.1831,
+          "similarity": 0.1826,
           "rerank_score": -11.186671257019043,
           "text_preview": "Section 2. Definitions\nIn this Act, unless there is anything repugnant in the subject or context,\n\n(b) \"employer\" means any person who employs, whether directly or through another person, or whether o"
         },
@@ -164,7 +164,7 @@
           "rank": 2,
           "chunk_id": "sample_workers_2024_40f5cd25bc5e",
           "citation": "Sample Workers Protection Act 2024, Chapter II: EMPLOYMENT CONDITIONS, Section 4, (Maximum working hours)",
-          "similarity": 0.2572,
+          "similarity": 0.2573,
           "rerank_score": -8.175223350524902,
           "text_preview": "Section 4. Maximum working hours\n(1) No worker shall be required or allowed to work in an establishment for more than eight hours in any day.\n(2) No worker shall be required or allowed to work for mor"
         },
@@ -269,7 +269,7 @@
           "rank": 2,
           "chunk_id": "sample_workers_2024_4db0510ce2a7",
           "citation": "Sample Workers Protection Act 2024, Chapter I: INTRODUCTION AND DEFINITIONS, Section 2, (Definitions)",
-          "similarity": 0.3476,
+          "similarity": 0.3469,
           "rerank_score": -9.203700065612793,
           "text_preview": "Section 2. Definitions\nIn this Act, unless there is anything repugnant in the subject or context,\n\n(b) \"employer\" means any person who employs, whether directly or through another person, or whether o"
         },
@@ -277,7 +277,7 @@
           "rank": 3,
           "chunk_id": "sample_workers_2024_40f5cd25bc5e",
           "citation": "Sample Workers Protection Act 2024, Chapter II: EMPLOYMENT CONDITIONS, Section 4, (Maximum working hours)",
-          "similarity": 0.3613,
+          "similarity": 0.3614,
           "rerank_score": -9.317829132080078,
           "text_preview": "Section 4. Maximum working hours\n(1) No worker shall be required or allowed to work in an establishment for more than eight hours in any day.\n(2) No worker shall be required or allowed to work for mor"
         }
@@ -347,7 +347,7 @@
           "rank": 3,
           "chunk_id": "sample_workers_2024_7c4867b40623",
           "citation": "Sample Workers Protection Act 2024, Chapter V: WORKPLACE SAFETY, Section 12, (Cleanliness)",
-          "similarity": 0.355,
+          "similarity": 0.3553,
           "rerank_score": -7.943967819213867,
           "text_preview": "Section 12. Cleanliness\n(1) Every establishment shall be kept clean and free from effluvia arising from any drain, privy or other nuisance.\n(2) The floors of every workroom shall be cleaned at least o"
         }
@@ -366,7 +366,7 @@
           "rank": 1,
           "chunk_id": "sample_workers_2024_2dd6a0bac055",
           "citation": "Sample Workers Protection Act 2024, Section preamble, (Preamble / Preliminary)",
-          "similarity": 0.6267,
+          "similarity": 0.6268,
           "rerank_score": 4.143267631530762,
           "text_preview": "Sample Workers Protection Act, 2024 ? Page 1\n\nTHE SAMPLE WORKERS PROTECTION ACT, 2024\n\nAn Act to provide for the protection of workers' rights and welfare in the People's Republic of Bangladesh.\n\nWher"
         },
@@ -382,7 +382,7 @@
           "rank": 3,
           "chunk_id": "sample_workers_2024_40f5cd25bc5e",
           "citation": "Sample Workers Protection Act 2024, Chapter II: EMPLOYMENT CONDITIONS, Section 4, (Maximum working hours)",
-          "similarity": 0.4739,
+          "similarity": 0.474,
           "rerank_score": -8.405952453613281,
           "text_preview": "Section 4. Maximum working hours\n(1) No worker shall be required or allowed to work in an establishment for more than eight hours in any day.\n(2) No worker shall be required or allowed to work for mor"
         }
@@ -436,7 +436,7 @@
           "rank": 1,
           "chunk_id": "sample_workers_2024_40f5cd25bc5e",
           "citation": "Sample Workers Protection Act 2024, Chapter II: EMPLOYMENT CONDITIONS, Section 4, (Maximum working hours)",
-          "similarity": 0.6633,
+          "similarity": 0.6634,
           "rerank_score": 6.337599754333496,
           "text_preview": "Section 4. Maximum working hours\n(1) No worker shall be required or allowed to work in an establishment for more than eight hours in any day.\n(2) No worker shall be required or allowed to work for mor"
         },
@@ -452,7 +452,7 @@
           "rank": 3,
           "chunk_id": "sample_workers_2024_7c4867b40623",
           "citation": "Sample Workers Protection Act 2024, Chapter V: WORKPLACE SAFETY, Section 12, (Cleanliness)",
-          "similarity": 0.2365,
+          "similarity": 0.2366,
           "rerank_score": -10.54859447479248,
           "text_preview": "Section 12. Cleanliness\n(1) Every establishment shall be kept clean and free from effluvia arising from any drain, privy or other nuisance.\n(2) The floors of every workroom shall be cleaned at least o"
         }
@@ -471,7 +471,7 @@
           "rank": 1,
           "chunk_id": "sample_workers_2024_40f5cd25bc5e",
           "citation": "Sample Workers Protection Act 2024, Chapter II: EMPLOYMENT CONDITIONS, Section 4, (Maximum working hours)",
-          "similarity": 0.4726,
+          "similarity": 0.4728,
           "rerank_score": -0.8423855900764465,
           "text_preview": "Section 4. Maximum working hours\n(1) No worker shall be required or allowed to work in an establishment for more than eight hours in any day.\n(2) No worker shall be required or allowed to work for mor"
         },
@@ -487,7 +487,7 @@
           "rank": 3,
           "chunk_id": "sample_workers_2024_4db0510ce2a7",
           "citation": "Sample Workers Protection Act 2024, Chapter I: INTRODUCTION AND DEFINITIONS, Section 2, (Definitions)",
-          "similarity": 0.5237,
+          "similarity": 0.5225,
           "rerank_score": -3.42051362991333,
           "text_preview": "Section 2. Definitions\nIn this Act, unless there is anything repugnant in the subject or context,\n\n(b) \"employer\" means any person who employs, whether directly or through another person, or whether o"
         }
@@ -514,7 +514,7 @@
           "rank": 2,
           "chunk_id": "sample_workers_2024_40f5cd25bc5e",
           "citation": "Sample Workers Protection Act 2024, Chapter II: EMPLOYMENT CONDITIONS, Section 4, (Maximum working hours)",
-          "similarity": 0.3938,
+          "similarity": 0.394,
           "rerank_score": -8.22033405303955,
           "text_preview": "Section 4. Maximum working hours\n(1) No worker shall be required or allowed to work in an establishment for more than eight hours in any day.\n(2) No worker shall be required or allowed to work for mor"
         },
@@ -522,7 +522,7 @@
           "rank": 3,
           "chunk_id": "sample_workers_2024_4db0510ce2a7",
           "citation": "Sample Workers Protection Act 2024, Chapter I: INTRODUCTION AND DEFINITIONS, Section 2, (Definitions)",
-          "similarity": 0.4523,
+          "similarity": 0.4518,
           "rerank_score": -8.395220756530762,
           "text_preview": "Section 2. Definitions\nIn this Act, unless there is anything repugnant in the subject or context,\n\n(b) \"employer\" means any person who employs, whether directly or through another person, or whether o"
         }

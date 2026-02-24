@@ -45,6 +45,14 @@ RERANK_TOP_N = int(os.getenv("RERANK_TOP_N", 5))
 RERANKER_MODEL = os.getenv("RERANKER_MODEL", "cross-encoder/ms-marco-MiniLM-L-6-v2")
 
 # ============================================
+# Phase 3: RAG Chain & LLM Configuration
+# ============================================
+LLM_MODEL = os.getenv("LLM_MODEL", "gpt-4o-mini")
+LLM_TEMPERATURE = float(os.getenv("LLM_TEMPERATURE", 0.1))
+LLM_MAX_TOKENS = int(os.getenv("LLM_MAX_TOKENS", 1500))
+CONVERSATION_MEMORY_K = int(os.getenv("CONVERSATION_MEMORY_K", 5))
+
+# ============================================
 # Law Document Registry
 # Each entry contains metadata about a law PDF.
 # This registry drives the entire ingestion pipeline.
