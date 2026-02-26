@@ -53,6 +53,12 @@ LLM_MAX_TOKENS = int(os.getenv("LLM_MAX_TOKENS", 1500))
 CONVERSATION_MEMORY_K = int(os.getenv("CONVERSATION_MEMORY_K", 5))
 
 # ============================================
+# Phase 4: Bilingual Support Configuration
+# ============================================
+TRANSLATION_MODEL = os.getenv("TRANSLATION_MODEL", "gpt-4o-mini")
+DEFAULT_RESPONSE_LANGUAGE = os.getenv("DEFAULT_RESPONSE_LANGUAGE", "auto")  # auto, en, bn
+
+# ============================================
 # Law Document Registry
 # Each entry contains metadata about a law PDF.
 # This registry drives the entire ingestion pipeline.

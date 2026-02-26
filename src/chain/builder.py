@@ -23,6 +23,8 @@ from src.config import (
     LLM_TEMPERATURE,
     LLM_MAX_TOKENS,
     CONVERSATION_MEMORY_K,
+    TRANSLATION_MODEL,
+    DEFAULT_RESPONSE_LANGUAGE,
 )
 from src.vectorstore.embeddings import EmbeddingGenerator
 from src.vectorstore.chroma_store import ChromaStore
@@ -115,3 +117,46 @@ def build_rag_chain(
     logger.info("RAG chain ready!")
 
     return chain
+
+
+def build_bilingual_chain(
+    api_key: str = OPENAI_API_KEY,
+    use_reranker: bool = True,
+    response_language: str = DEFAULT_RESPONSE_LANGUAGE,
+    **kwargs,
+) -> "BilingualRAGChain":
+    """
+    Build a bilingual RAG chain with language detection and translation.
+
+    Args:
+        api_key: OpenAI API key.
+        use_reranker: Whether to load the cross-encoder reranker.
+        response_language: Default response language ("auto", "en", "bn").
+        **kwargs: Additional args passed to build_rag_chain().
+
+    Returns:
+        Ready-to-use BilingualRAGChain instance.
+    """
+    from src.language.translator import QueryTranslator
+    from src.language.bilingual import BilingualRAGChain
+
+    # Build the base RAG chain
+    rag_chain = build_rag_chain(api_key=api_key, use_reranker=use_reranker, **kwargs)
+
+    # Build translator
+    translator = QueryTranslator(
+        api_key=api_key,
+        model=TRANSLATION_MODEL,
+    )
+    logger.info(f"  Translator: {TRANSLATION_MODEL}")
+
+    # Wrap in bilingual chain
+    bilingual = BilingualRAGChain(
+        rag_chain=rag_chain,
+        translator=translator,
+        default_response_language=response_language,
+    )
+    logger.info(f"  Response language: {response_language}")
+    logger.info("Bilingual RAG chain ready!")
+
+    return bilingual
