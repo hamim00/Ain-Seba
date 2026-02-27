@@ -1,0 +1,363 @@
+[
+  {
+    "id": "eval_001",
+    "question": "What is the maximum number of working hours per day for an adult worker?",
+    "ground_truth": "According to Section 100 of the Bangladesh Labour Act 2006, no adult worker shall be required or allowed to work in an establishment for more than 8 hours in any day.",
+    "ground_truth_sections": ["Section 100"],
+    "act_id": "labour_act_2006",
+    "category": "Employment",
+    "query_type": "factual"
+  },
+  {
+    "id": "eval_002",
+    "question": "What is the definition of theft under Bangladesh law?",
+    "ground_truth": "According to Section 378 of the Penal Code 1860, whoever intending to take dishonestly any moveable property out of the possession of any person without that person's consent, moves that property in order to such taking, is said to commit theft.",
+    "ground_truth_sections": ["Section 378"],
+    "act_id": "penal_code_1860",
+    "category": "Criminal Law",
+    "query_type": "factual"
+  },
+  {
+    "id": "eval_003",
+    "question": "What is the punishment for theft?",
+    "ground_truth": "According to Section 379 of the Penal Code 1860, whoever commits theft shall be punished with imprisonment of either description for a term which may extend to three years, or with fine, or with both.",
+    "ground_truth_sections": ["Section 379"],
+    "act_id": "penal_code_1860",
+    "category": "Criminal Law",
+    "query_type": "factual"
+  },
+  {
+    "id": "eval_004",
+    "question": "My employer hasn't paid my wages for 3 months. What can I do under the law?",
+    "ground_truth": "Under the Bangladesh Labour Act 2006, wages must be paid within 7 working days of the wage period. If wages are delayed, the worker can file a complaint with the Labour Court. Section 124 provides for the establishment of Labour Courts, and Section 126 outlines the procedure for filing complaints related to wages and other disputes.",
+    "ground_truth_sections": ["Section 121", "Section 124", "Section 126"],
+    "act_id": "labour_act_2006",
+    "category": "Employment",
+    "query_type": "situational"
+  },
+  {
+    "id": "eval_005",
+    "question": "What are the grounds for divorce under Muslim Family Law?",
+    "ground_truth": "Under the Muslim Family Laws Ordinance 1961 and the Dissolution of Muslim Marriages Act 1939, a woman may obtain divorce on grounds including cruelty, failure to maintain, desertion for two years, imprisonment for seven years, failure to perform marital obligations, impotence, and insanity.",
+    "ground_truth_sections": ["Section 2"],
+    "act_id": "muslim_family_laws_1961",
+    "category": "Family Law",
+    "query_type": "factual"
+  },
+  {
+    "id": "eval_006",
+    "question": "What is the minimum age for employment in Bangladesh?",
+    "ground_truth": "According to Section 34 of the Bangladesh Labour Act 2006, no child who has not completed 14 years of age shall be employed or permitted to work in any occupation or establishment. Adolescents between 14 and 18 may work under certain conditions.",
+    "ground_truth_sections": ["Section 34"],
+    "act_id": "labour_act_2006",
+    "category": "Employment",
+    "query_type": "factual"
+  },
+  {
+    "id": "eval_007",
+    "question": "What happens if someone is caught stealing something worth more than Tk. 500?",
+    "ground_truth": "Under the Penal Code 1860, theft is punishable under Section 379 with imprisonment up to 3 years, or fine, or both. The value of stolen property may affect sentencing severity but Section 379 applies regardless of value. For theft in a dwelling house, Section 380 provides enhanced punishment of up to 7 years.",
+    "ground_truth_sections": ["Section 379", "Section 380"],
+    "act_id": "penal_code_1860",
+    "category": "Criminal Law",
+    "query_type": "situational"
+  },
+  {
+    "id": "eval_008",
+    "question": "How much maternity leave is a female worker entitled to?",
+    "ground_truth": "According to Section 45 of the Bangladesh Labour Act 2006, every woman worker is entitled to maternity benefit for a total period of 16 weeks, 8 weeks before and 8 weeks after delivery.",
+    "ground_truth_sections": ["Section 45"],
+    "act_id": "labour_act_2006",
+    "category": "Employment",
+    "query_type": "factual"
+  },
+  {
+    "id": "eval_009",
+    "question": "What is the penalty for murder in Bangladesh?",
+    "ground_truth": "According to Section 302 of the Penal Code 1860, whoever commits murder shall be punished with death, or imprisonment for life, and shall also be liable to fine.",
+    "ground_truth_sections": ["Section 302"],
+    "act_id": "penal_code_1860",
+    "category": "Criminal Law",
+    "query_type": "factual"
+  },
+  {
+    "id": "eval_010",
+    "question": "Can a worker form or join a trade union?",
+    "ground_truth": "According to Section 176 of the Bangladesh Labour Act 2006, workers employed in any establishment or industry have the right to form trade unions and every worker has the right to join a trade union of their choice.",
+    "ground_truth_sections": ["Section 176"],
+    "act_id": "labour_act_2006",
+    "category": "Employment",
+    "query_type": "factual"
+  },
+  {
+    "id": "eval_011",
+    "question": "What are the rights of a tenant in Bangladesh?",
+    "ground_truth": "Under the Premises Rent Control Ordinance, tenants have the right to not be evicted without reasonable cause, the right to fair rent, and protection against arbitrary rent increases. Landlords must follow proper legal procedures for eviction.",
+    "ground_truth_sections": ["Section 12", "Section 14"],
+    "act_id": "premises_rent_control",
+    "category": "Property Law",
+    "query_type": "factual"
+  },
+  {
+    "id": "eval_012",
+    "question": "I was terminated from my job without notice. Is this legal?",
+    "ground_truth": "Under the Bangladesh Labour Act 2006, Section 26 requires employers to give workers notice before termination. For permanent workers, the notice period is 120 days for monthly-rated workers and 60 days for other workers. Alternatively, the employer may pay wages in lieu of notice. Termination without notice or payment in lieu is unlawful.",
+    "ground_truth_sections": ["Section 26"],
+    "act_id": "labour_act_2006",
+    "category": "Employment",
+    "query_type": "situational"
+  },
+  {
+    "id": "eval_013",
+    "question": "What constitutes cheating under the Penal Code?",
+    "ground_truth": "According to Section 415 of the Penal Code 1860, whoever by deceiving any person fraudulently or dishonestly induces the person so deceived to deliver any property to any person, or to consent that any person shall retain any property, is said to cheat.",
+    "ground_truth_sections": ["Section 415"],
+    "act_id": "penal_code_1860",
+    "category": "Criminal Law",
+    "query_type": "factual"
+  },
+  {
+    "id": "eval_014",
+    "question": "How do I file a consumer complaint in Bangladesh?",
+    "ground_truth": "Under the Consumer Rights Protection Act 2009, a consumer can file a complaint with the Directorate of National Consumer Rights Protection or with a Consumer Rights Protection Court. The complaint should detail the grievance, the product or service involved, and the relief sought.",
+    "ground_truth_sections": ["Section 57", "Section 62"],
+    "act_id": "consumer_rights_2009",
+    "category": "Consumer Protection",
+    "query_type": "situational"
+  },
+  {
+    "id": "eval_015",
+    "question": "What is the legal definition of defamation?",
+    "ground_truth": "According to Section 499 of the Penal Code 1860, whoever by words either spoken or intended to be read, or by signs or by visible representations, makes or publishes any imputation concerning any person intending to harm, or knowing or having reason to believe that such imputation will harm, the reputation of such person, is said to defame that person.",
+    "ground_truth_sections": ["Section 499"],
+    "act_id": "penal_code_1860",
+    "category": "Criminal Law",
+    "query_type": "factual"
+  },
+  {
+    "id": "eval_016",
+    "question": "What weekly holiday are workers entitled to?",
+    "ground_truth": "Under Section 103 of the Bangladesh Labour Act 2006, every worker shall be allowed one and a half days off in every week. No deduction from wages shall be made on account of any holiday allowed under this section.",
+    "ground_truth_sections": ["Section 103"],
+    "act_id": "labour_act_2006",
+    "category": "Employment",
+    "query_type": "factual"
+  },
+  {
+    "id": "eval_017",
+    "question": "My landlord is trying to evict me without cause. What are my rights?",
+    "ground_truth": "Under the Premises Rent Control Ordinance, a landlord cannot evict a tenant without a valid ground specified in the law. Valid grounds include non-payment of rent, subletting without permission, or the landlord's bona fide need for the premises. The landlord must file a suit in court for eviction.",
+    "ground_truth_sections": ["Section 14", "Section 18"],
+    "act_id": "premises_rent_control",
+    "category": "Property Law",
+    "query_type": "situational"
+  },
+  {
+    "id": "eval_018",
+    "question": "What is criminal intimidation?",
+    "ground_truth": "According to Section 503 of the Penal Code 1860, whoever threatens another with any injury to his person, reputation, or property, or to the person or reputation of anyone in whom that person is interested, with intent to cause alarm to that person, or to cause that person to do any act which he is not legally bound to do, commits criminal intimidation.",
+    "ground_truth_sections": ["Section 503"],
+    "act_id": "penal_code_1860",
+    "category": "Criminal Law",
+    "query_type": "factual"
+  },
+  {
+    "id": "eval_019",
+    "question": "Is overtime work mandatory? How much overtime pay should a worker receive?",
+    "ground_truth": "Under the Bangladesh Labour Act 2006, overtime work requires worker consent. Section 108 provides that for overtime work, a worker shall be entitled to an allowance at the rate of twice his ordinary rate of wages.",
+    "ground_truth_sections": ["Section 108"],
+    "act_id": "labour_act_2006",
+    "category": "Employment",
+    "query_type": "factual"
+  },
+  {
+    "id": "eval_020",
+    "question": "What is the difference between culpable homicide and murder?",
+    "ground_truth": "Under the Penal Code 1860, Section 299 defines culpable homicide as causing death by doing an act with the intention of causing death or bodily injury likely to cause death. Section 300 defines murder as culpable homicide with specific aggravating intentions. The key difference is the degree of intention and knowledge.",
+    "ground_truth_sections": ["Section 299", "Section 300"],
+    "act_id": "penal_code_1860",
+    "category": "Criminal Law",
+    "query_type": "comparative"
+  },
+  {
+    "id": "eval_021",
+    "question": "What are the environmental pollution penalties in Bangladesh?",
+    "ground_truth": "Under the Bangladesh Environment Conservation Act 1995, penalties for environmental pollution include fines and imprisonment. The Act provides for penalties for contravening any provisions of the Act, which may include imprisonment up to 10 years or fine up to Tk. 10 lakh, or both.",
+    "ground_truth_sections": ["Section 15"],
+    "act_id": "environment_conservation_1995",
+    "category": "Environmental Law",
+    "query_type": "factual"
+  },
+  {
+    "id": "eval_022",
+    "question": "Can women work night shifts in factories?",
+    "ground_truth": "Under Section 39 of the Bangladesh Labour Act 2006, no woman shall be employed to work in any establishment between the hours of 10:00 PM and 6:00 AM except with her consent and with specific conditions including transport and security arrangements provided by the employer.",
+    "ground_truth_sections": ["Section 39"],
+    "act_id": "labour_act_2006",
+    "category": "Employment",
+    "query_type": "factual"
+  },
+  {
+    "id": "eval_023",
+    "question": "What is the punishment for kidnapping?",
+    "ground_truth": "Under Section 363 of the Penal Code 1860, whoever kidnaps any person from Bangladesh or from lawful guardianship shall be punished with imprisonment of either description for a term which may extend to seven years, and shall also be liable to fine.",
+    "ground_truth_sections": ["Section 363"],
+    "act_id": "penal_code_1860",
+    "category": "Criminal Law",
+    "query_type": "factual"
+  },
+  {
+    "id": "eval_024",
+    "question": "I bought a defective product and the seller refuses to refund. What can I do?",
+    "ground_truth": "Under the Consumer Rights Protection Act 2009, consumers have the right to seek remedy for defective products. You can file a complaint with the Directorate of National Consumer Rights Protection. The Act provides for compensation, replacement, or refund of defective goods.",
+    "ground_truth_sections": ["Section 42", "Section 57"],
+    "act_id": "consumer_rights_2009",
+    "category": "Consumer Protection",
+    "query_type": "situational"
+  },
+  {
+    "id": "eval_025",
+    "question": "What are the provisions for workplace safety in factories?",
+    "ground_truth": "The Bangladesh Labour Act 2006, Chapter V covers health and hygiene, and Chapter VI covers safety provisions. These include requirements for cleanliness, ventilation, lighting, fire safety, precautions against dangerous machinery, and first-aid facilities.",
+    "ground_truth_sections": ["Chapter V", "Chapter VI"],
+    "act_id": "labour_act_2006",
+    "category": "Employment",
+    "query_type": "factual"
+  },
+  {
+    "id": "eval_026",
+    "question": "What is the legal process for registering a marriage in Bangladesh?",
+    "ground_truth": "Under the Muslim Family Laws Ordinance 1961 and the Muslim Marriages and Divorces (Registration) Act 1974, every Muslim marriage must be registered with the Nikah Registrar. The marriage must be registered within a specified time, and failure to register is punishable with fine or imprisonment.",
+    "ground_truth_sections": ["Section 3", "Section 5"],
+    "act_id": "muslim_family_laws_1961",
+    "category": "Family Law",
+    "query_type": "factual"
+  },
+  {
+    "id": "eval_027",
+    "question": "What is forgery and what is its punishment?",
+    "ground_truth": "Under Section 463 of the Penal Code 1860, forgery is making a false document with intent to cause damage or injury, to support a claim, or to cause someone to part with property. Section 465 provides punishment for forgery with imprisonment up to two years, or fine, or both.",
+    "ground_truth_sections": ["Section 463", "Section 465"],
+    "act_id": "penal_code_1860",
+    "category": "Criminal Law",
+    "query_type": "factual"
+  },
+  {
+    "id": "eval_028",
+    "question": "How much annual leave is a worker entitled to?",
+    "ground_truth": "Under Section 117 of the Bangladesh Labour Act 2006, every worker who has completed one year of continuous service is entitled to annual leave with wages for a number of days calculated at the rate of one day for every eighteen days of work in a factory or one day for every twenty-two days of work in other establishments.",
+    "ground_truth_sections": ["Section 117"],
+    "act_id": "labour_act_2006",
+    "category": "Employment",
+    "query_type": "factual"
+  },
+  {
+    "id": "eval_029",
+    "question": "What is dowry and what are the penalties for demanding it?",
+    "ground_truth": "Under the Dowry Prohibition Act 2018, dowry means any property or valuable security given or agreed to be given by one party to a marriage to the other party. Demanding, giving, or taking dowry is punishable with imprisonment of 5 years to life, or fine, or both.",
+    "ground_truth_sections": ["Section 2", "Section 3"],
+    "act_id": "dowry_prohibition_2018",
+    "category": "Family Law",
+    "query_type": "factual"
+  },
+  {
+    "id": "eval_030",
+    "question": "A factory near my home is dumping chemicals into the river. What legal action can be taken?",
+    "ground_truth": "Under the Bangladesh Environment Conservation Act 1995, industrial pollution of water bodies is a punishable offense. You can file a complaint with the Department of Environment or seek remedies through the Environment Court. The Environment Conservation Rules set specific standards for industrial discharge.",
+    "ground_truth_sections": ["Section 6", "Section 12", "Section 15"],
+    "act_id": "environment_conservation_1995",
+    "category": "Environmental Law",
+    "query_type": "situational"
+  },
+  {
+    "id": "eval_031",
+    "question": "What is the difference between robbery and dacoity?",
+    "ground_truth": "Under the Penal Code 1860, Section 390 defines robbery as theft or extortion accompanied by death, hurt, or wrongful restraint. Section 391 defines dacoity as robbery committed by five or more persons conjointly. Dacoity carries a heavier punishment than robbery.",
+    "ground_truth_sections": ["Section 390", "Section 391"],
+    "act_id": "penal_code_1860",
+    "category": "Criminal Law",
+    "query_type": "comparative"
+  },
+  {
+    "id": "eval_032",
+    "question": "What gratuity is a worker entitled to upon retirement?",
+    "ground_truth": "Under Section 27 of the Bangladesh Labour Act 2006, a worker who has completed at least five years of continuous service is entitled to gratuity at the rate of 30 days wages for each completed year of service.",
+    "ground_truth_sections": ["Section 27"],
+    "act_id": "labour_act_2006",
+    "category": "Employment",
+    "query_type": "factual"
+  },
+  {
+    "id": "eval_033",
+    "question": "What constitutes domestic violence under Bangladesh law?",
+    "ground_truth": "Under the Domestic Violence (Prevention and Protection) Act 2010, domestic violence includes physical abuse, psychological abuse, sexual abuse, and economic abuse committed by any person in a domestic relationship. The victim can seek protection orders from the court.",
+    "ground_truth_sections": ["Section 3"],
+    "act_id": "domestic_violence_2010",
+    "category": "Family Law",
+    "query_type": "factual"
+  },
+  {
+    "id": "eval_034",
+    "question": "What is the punishment for bribery of a public servant?",
+    "ground_truth": "Under Section 161 of the Penal Code 1860, a public servant who accepts or obtains any gratification other than legal remuneration as a motive or reward shall be punished with imprisonment up to three years, or fine, or both. The Anti-Corruption Commission Act 2004 also provides enhanced penalties.",
+    "ground_truth_sections": ["Section 161"],
+    "act_id": "penal_code_1860",
+    "category": "Criminal Law",
+    "query_type": "factual"
+  },
+  {
+    "id": "eval_035",
+    "question": "My employer deducted money from my wages without explanation. Is this legal?",
+    "ground_truth": "Under Section 125 of the Bangladesh Labour Act 2006, deductions from wages are only permitted for specific reasons including absence from duty, damage to property, fines lawfully imposed, and contributions to provident fund. No deduction other than those authorized under the Act can be made.",
+    "ground_truth_sections": ["Section 125"],
+    "act_id": "labour_act_2006",
+    "category": "Employment",
+    "query_type": "situational"
+  },
+  {
+    "id": "eval_036",
+    "question": "What is the legal framework for cyber crimes in Bangladesh?",
+    "ground_truth": "The Digital Security Act 2018 is the primary legislation governing cyber crimes in Bangladesh. It covers offenses including unauthorized access to computer systems, identity fraud, cyber terrorism, publishing defamatory content online, and electronic forgery. Penalties range from fines to imprisonment up to 14 years.",
+    "ground_truth_sections": ["Section 17", "Section 18", "Section 25"],
+    "act_id": "digital_security_2018",
+    "category": "Cyber Law",
+    "query_type": "factual"
+  },
+  {
+    "id": "eval_037",
+    "question": "Can a worker be dismissed for participating in a strike?",
+    "ground_truth": "Under the Bangladesh Labour Act 2006, workers have the right to strike under certain conditions. Section 211 provides that no worker can be dismissed or discharged solely for participation in a legal strike. However, participation in an illegal strike may be grounds for disciplinary action.",
+    "ground_truth_sections": ["Section 211"],
+    "act_id": "labour_act_2006",
+    "category": "Employment",
+    "query_type": "factual"
+  },
+  {
+    "id": "eval_038",
+    "question": "What are the inheritance rights of women in Bangladesh?",
+    "ground_truth": "Inheritance rights in Bangladesh vary by religion. Under Muslim personal law, a daughter receives half the share of a son. Under the Hindu Succession Act, Hindu women have limited inheritance rights. The issue is governed by personal laws rather than a uniform civil code.",
+    "ground_truth_sections": [],
+    "act_id": "personal_law",
+    "category": "Family Law",
+    "query_type": "factual"
+  },
+  {
+    "id": "eval_039",
+    "question": "What is the legal drinking age and alcohol laws in Bangladesh?",
+    "ground_truth": "Under the Excise Act 1909 and related regulations, the possession, sale, and consumption of alcohol are regulated. Non-Muslims above 21 years may obtain a liquor permit. For Muslims, consumption of alcohol is prohibited. Penalties include fines and imprisonment for violations.",
+    "ground_truth_sections": [],
+    "act_id": "excise_act_1909",
+    "category": "Regulatory Law",
+    "query_type": "factual"
+  },
+  {
+    "id": "eval_040",
+    "question": "What is the tax rate in the United States?",
+    "ground_truth": "",
+    "ground_truth_sections": [],
+    "act_id": "",
+    "category": "",
+    "query_type": "out_of_scope",
+    "expected_behavior": "Should decline to answer as this is outside Bangladesh law."
+  }
+]

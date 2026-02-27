@@ -107,7 +107,7 @@ def cmd_interactive(no_reranker: bool = False):
     print(f"\n{'='*70}")
     print("AinSeba - Interactive Legal Assistant")
     print("Ask legal questions about Bangladesh law.")
-    print("Commands: /clear (reset memory), /history, /sources, /quit")
+    print("Commands: /clear (reset memory), /history, /sources, /quit  (or just type: quit, exit, q)")
     print(f"{'='*70}")
 
     last_response = None
@@ -122,7 +122,7 @@ def cmd_interactive(no_reranker: bool = False):
         if not question:
             continue
 
-        if question == "/quit":
+        if question in ("/quit", "quit", "exit", "q", "bye", "/exit"):
             print("Goodbye!")
             break
         elif question == "/clear":

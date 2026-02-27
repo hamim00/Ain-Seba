@@ -153,26 +153,6 @@ LAW_REGISTRY = [
         "year": 1972,
         "language": "english",
     },
-    {
-        "id": "environment_act_1995",
-        "name": "Bangladesh Environment Conservation Act 1995",
-        "filename": "environment_conservation_act_1995.pdf",
-        "source_url": "http://bdlaws.minlaw.gov.bd/act-805.html",
-        "priority": "P1",
-        "category": "Environmental Law",
-        "year": 1995,
-        "language": "english",
-    },
-    {
-        "id": "tenancy_act_1950",
-        "name": "State Acquisition and Tenancy Act 1950",
-        "filename": "state_acquisition_tenancy_act_1950.pdf",
-        "source_url": "http://bdlaws.minlaw.gov.bd/act-250.html",
-        "priority": "P1",
-        "category": "Property Law",
-        "year": 1950,
-        "language": "english",
-    },
 ]
 
 

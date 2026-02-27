@@ -3,10 +3,11 @@ AinSeba - Vector Store Population Script
 Loads Phase 1 processed chunks, generates embeddings, and stores in ChromaDB.
 
 Usage:
-    python -m src.vectorstore.populate                  # All chunks
-    python -m src.vectorstore.populate --act labour_act_2006   # Single act
-    python -m src.vectorstore.populate --reset           # Reset and re-populate
-    python -m src.vectorstore.populate --stats           # Show store statistics
+    python -m src.vectorstore.populate                       # All chunks (default)
+    python -m src.vectorstore.populate --act labour_act_2006  # Single act
+    python -m src.vectorstore.populate --file path/to.json    # Specific file
+    python -m src.vectorstore.populate --reset                # Reset and re-populate
+    python -m src.vectorstore.populate --stats                # Show store statistics
 """
 
 import json
@@ -14,6 +15,7 @@ import sys
 import logging
 import argparse
 from pathlib import Path
+from typing import List, Dict, Tuple
 
 PROJECT_ROOT = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
@@ -31,7 +33,114 @@ from src.vectorstore.chroma_store import ChromaStore
 logger = logging.getLogger(__name__)
 
 
-def load_chunks(source_path: Path = None, act_id: str = None) -> list[dict]:
+# ---------------------------------------------------------------------
+# Safety splitter to avoid embedding context-length errors (8192 tokens)
+# ---------------------------------------------------------------------
+def split_large_text(text: str, max_chars: int = 12000) -> List[str]:
+    """
+    Split a long text into smaller parts, attempting paragraph-based splits first.
+    This is a character-based proxy to keep token count comfortably below 8192.
+
+    max_chars=12000 is a conservative default for legal text.
+    """
+    if not text:
+        return []
+
+    text = text.strip()
+    if len(text) <= max_chars:
+        return [text]
+
+    parts: List[str] = []
+    buf = ""
+
+    # Prefer splitting on double-newlines (paragraphs)
+    paragraphs = text.split("\n\n")
+
+    for para in paragraphs:
+        para = para.strip()
+        if not para:
+            continue
+
+        if len(buf) + len(para) + 2 <= max_chars:
+            buf = (buf + "\n\n" + para) if buf else para
+            continue
+
+        # flush buffer
+        if buf:
+            parts.append(buf.strip())
+            buf = ""
+
+        # if the paragraph itself fits, start new buffer
+        if len(para) <= max_chars:
+            buf = para
+        else:
+            # hard cut a giant paragraph
+            for i in range(0, len(para), max_chars):
+                chunk = para[i : i + max_chars].strip()
+                if chunk:
+                    parts.append(chunk)
+
+    if buf:
+        parts.append(buf.strip())
+
+    # Final cleanup
+    return [p for p in parts if p]
+
+
+def normalize_and_split_chunks(
+    chunks: List[Dict],
+    max_chars: int = 12000
+) -> Tuple[List[str], List[str], List[Dict], int]:
+    """
+    Convert incoming Phase-1 chunks into safe (id, text, metadata) arrays,
+    splitting any oversized chunk into subchunks.
+
+    Returns:
+        chunk_ids, texts, metadatas, num_splits
+    """
+    chunk_ids: List[str] = []
+    texts: List[str] = []
+    metadatas: List[Dict] = []
+
+    num_splits = 0
+
+    for c in chunks:
+        base_id = c.get("chunk_id")
+        text = c.get("text", "")
+
+        if not base_id:
+            # Fallback if chunk_id missing
+            base_id = f"chunk_{len(chunk_ids)}"
+
+        # metadata = everything except chunk_id + text
+        meta = {k: v for k, v in c.items() if k not in ("text", "chunk_id")}
+
+        parts = split_large_text(text, max_chars=max_chars)
+
+        if len(parts) <= 1:
+            chunk_ids.append(base_id)
+            texts.append(parts[0] if parts else "")
+            metadatas.append(meta)
+        else:
+            num_splits += 1
+            for idx, part in enumerate(parts):
+                chunk_ids.append(f"{base_id}__{idx}")
+                texts.append(part)
+                metadatas.append({**meta, "subchunk": idx, "subchunk_total": len(parts)})
+
+    # Remove any accidental empties
+    filtered = [(i, t, m) for i, t, m in zip(chunk_ids, texts, metadatas) if t and t.strip()]
+    chunk_ids = [x[0] for x in filtered]
+    texts = [x[1] for x in filtered]
+    metadatas = [x[2] for x in filtered]
+
+    return chunk_ids, texts, metadatas, num_splits
+
+
+# ---------------------------------------------------------------------
+# Loading
+# ---------------------------------------------------------------------
+def load_chunks(source_path: Path = None, act_id: str = None) -> List[Dict]:
     """
     Load processed chunks from Phase 1 JSON files.
 
@@ -47,12 +156,10 @@ def load_chunks(source_path: Path = None, act_id: str = None) -> list[dict]:
     elif act_id:
         path = PROCESSED_DATA_DIR / f"{act_id}_chunks.json"
     else:
-        # Try combined file first, then individual files
         combined = PROCESSED_DATA_DIR / "all_chunks_combined.json"
         if combined.exists():
             path = combined
         else:
-            # Collect from individual files
             all_chunks = []
             for json_file in sorted(PROCESSED_DATA_DIR.glob("*_chunks.json")):
                 if "combined" not in json_file.name and "quality" not in json_file.name:
@@ -72,24 +179,22 @@ def load_chunks(source_path: Path = None, act_id: str = None) -> list[dict]:
     return chunks
 
 
+# ---------------------------------------------------------------------
+# Populate
+# ---------------------------------------------------------------------
 def populate_vectorstore(
-    chunks: list[dict],
+    chunks: List[Dict],
     api_key: str = OPENAI_API_KEY,
     persist_dir: Path = CHROMA_PERSIST_DIR,
     collection_name: str = CHROMA_COLLECTION_NAME,
     embedding_model: str = EMBEDDING_MODEL,
     batch_size: int = 100,
-) -> dict:
+    max_chars_per_embedding: int = 12000,
+) -> Dict:
     """
     Embed chunks and store in ChromaDB.
 
-    Args:
-        chunks: List of chunk dictionaries from Phase 1.
-        api_key: OpenAI API key.
-        persist_dir: ChromaDB persistence directory.
-        collection_name: ChromaDB collection name.
-        embedding_model: OpenAI embedding model name.
-        batch_size: Batch size for embedding API calls.
+    Key improvement: splits oversized texts to prevent OpenAI embedding context errors.
 
     Returns:
         Summary dict with stats.
@@ -97,22 +202,22 @@ def populate_vectorstore(
     logger.info(f"\n{'='*60}")
     logger.info("AinSeba — Vector Store Population")
     logger.info(f"{'='*60}")
-    logger.info(f"Chunks to embed: {len(chunks)}")
+    logger.info(f"Raw chunks loaded: {len(chunks)}")
     logger.info(f"Embedding model: {embedding_model}")
     logger.info(f"ChromaDB dir: {persist_dir}")
     logger.info(f"Collection: {collection_name}")
+    logger.info(f"Max chars per embedding input: {max_chars_per_embedding}")
 
     # Step 1: Initialize components
     embedder = EmbeddingGenerator(api_key=api_key, model=embedding_model)
     store = ChromaStore(persist_dir=persist_dir, collection_name=collection_name)
 
-    # Step 2: Prepare data
-    chunk_ids = [c["chunk_id"] for c in chunks]
-    texts = [c["text"] for c in chunks]
-    metadatas = [
-        {k: v for k, v in c.items() if k not in ("text", "chunk_id")}
-        for c in chunks
-    ]
+    # Step 2: Prepare + split data safely
+    chunk_ids, texts, metadatas, num_splits = normalize_and_split_chunks(
+        chunks, max_chars=max_chars_per_embedding
+    )
+
+    logger.info(f"Prepared texts to embed: {len(texts)} (split source chunks: {num_splits})")
 
     # Step 3: Generate embeddings
     logger.info(f"\n[1/2] Generating embeddings for {len(texts)} chunks...")
@@ -133,7 +238,9 @@ def populate_vectorstore(
     stats = store.get_stats()
 
     summary = {
-        "chunks_processed": len(chunks),
+        "raw_chunks_loaded": len(chunks),
+        "texts_embedded": len(texts),
+        "source_chunks_split": num_splits,
         "chunks_stored": added,
         "embedding_model": embedding_model,
         "embedding_dimension": len(embeddings[0]),
@@ -152,6 +259,9 @@ def populate_vectorstore(
     return summary
 
 
+# ---------------------------------------------------------------------
+# Stats
+# ---------------------------------------------------------------------
 def show_stats(
     persist_dir: Path = CHROMA_PERSIST_DIR,
     collection_name: str = CHROMA_COLLECTION_NAME,
@@ -190,6 +300,9 @@ def show_stats(
         print(f"Acts: {', '.join(stats['acts'])}")
 
 
+# ---------------------------------------------------------------------
+# CLI
+# ---------------------------------------------------------------------
 def main():
     parser = argparse.ArgumentParser(description="AinSeba — Populate Vector Store")
     group = parser.add_mutually_exclusive_group()
@@ -200,6 +313,7 @@ def main():
     group.add_argument("--reset", action="store_true", help="Reset collection and re-populate")
 
     parser.add_argument("--batch-size", type=int, default=100, help="Embedding batch size")
+    parser.add_argument("--max-chars", type=int, default=12000, help="Max characters per embedding input")
     parser.add_argument("--log-level", default="INFO", choices=["DEBUG", "INFO", "WARNING"])
     args = parser.parse_args()
 
@@ -234,7 +348,11 @@ def main():
         sys.exit(1)
 
     # Populate
-    populate_vectorstore(chunks, batch_size=args.batch_size)
+    populate_vectorstore(
+        chunks,
+        batch_size=args.batch_size,
+        max_chars_per_embedding=args.max_chars,
+    )
 
 
 if __name__ == "__main__":

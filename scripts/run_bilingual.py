@@ -150,7 +150,7 @@ def cmd_interactive(no_reranker: bool = False):
     print(f"\n{'='*70}")
     print("AinSeba - Bilingual Legal Assistant")
     print("Ask questions in English, Bangla, or Banglish.")
-    print("Commands: /lang en|bn, /detect, /clear, /quit")
+    print("Commands: /lang en|bn, /detect, /clear, /quit  (or just type: quit, exit, q)")
     print(f"{'='*70}")
 
     force_lang = None
@@ -165,7 +165,7 @@ def cmd_interactive(no_reranker: bool = False):
         if not question:
             continue
 
-        if question == "/quit":
+        if question in ("/quit", "quit", "exit", "q", "bye", "/exit"):
             print("Goodbye! / বিদায়!")
             break
         elif question.startswith("/lang "):

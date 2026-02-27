@@ -27,9 +27,10 @@ env/
 .DS_Store
 Thumbs.db
 
-# Data (PDFs are large - keep in raw but don't track)
-# Uncomment below if you don't want to track raw PDFs in git
-# data/raw/*.pdf
+data/raw/*.pdf
+data/processed/*.pdf
+data/processed/*.json
+data/processed/
 
 # ChromaDB (Phase 2+)
 chroma_db/

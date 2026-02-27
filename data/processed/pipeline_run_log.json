@@ -1,18 +1,109 @@
 {
-  "run_date": "2026-02-24T01:02:33.598506",
-  "total_laws": 8,
-  "processed": [],
-  "skipped": [
+  "run_date": "2026-02-27T04:24:37.401558",
+  "total_laws": 10,
+  "processed": [
     {
-      "act_id": "labour_act_2006",
+      "status": "success",
+      "filename": "bangladesh_labour_act_2006.pdf",
       "act_name": "Bangladesh Labour Act 2006",
-      "reason": "PDF not found at D:\\project\\ainseba\\data\\raw\\bangladesh_labour_act_2006.pdf"
+      "act_id": "labour_act_2006",
+      "pages_extracted": 145,
+      "chars_raw": 421636,
+      "chars_cleaned": 398246,
+      "total_chunks": 1,
+      "total_tokens": 575,
+      "avg_tokens_per_chunk": 575.0,
+      "quality_score": 100.0,
+      "quality_grade": "A - Excellent",
+      "output_files": {
+        "json": "D:\\project\\ainseba\\data\\processed\\labour_act_2006_chunks.json",
+        "csv": "D:\\project\\ainseba\\data\\processed\\labour_act_2006_chunks.csv",
+        "cleaned_text": "D:\\project\\ainseba\\data\\processed\\labour_act_2006_cleaned.txt",
+        "quality_report": "D:\\project\\ainseba\\data\\processed\\labour_act_2006_quality_report.json"
+      }
     },
     {
-      "act_id": "penal_code_1860",
+      "status": "success",
+      "filename": "penal_code_1860.pdf",
       "act_name": "The Penal Code 1860",
-      "reason": "PDF not found at D:\\project\\ainseba\\data\\raw\\penal_code_1860.pdf"
+      "act_id": "penal_code_1860",
+      "pages_extracted": 223,
+      "chars_raw": 554192,
+      "chars_cleaned": 433455,
+      "total_chunks": 126,
+      "total_tokens": 81812,
+      "avg_tokens_per_chunk": 649.3,
+      "quality_score": 98.6,
+      "quality_grade": "A - Excellent",
+      "output_files": {
+        "json": "D:\\project\\ainseba\\data\\processed\\penal_code_1860_chunks.json",
+        "csv": "D:\\project\\ainseba\\data\\processed\\penal_code_1860_chunks.csv",
+        "cleaned_text": "D:\\project\\ainseba\\data\\processed\\penal_code_1860_cleaned.txt",
+        "quality_report": "D:\\project\\ainseba\\data\\processed\\penal_code_1860_quality_report.json"
+      }
     },
+    {
+      "status": "success",
+      "filename": "muslim_family_laws_ordinance_1961.pdf",
+      "act_name": "Muslim Family Laws Ordinance 1961",
+      "act_id": "muslim_family_law_1961",
+      "pages_extracted": 9,
+      "chars_raw": 20472,
+      "chars_cleaned": 16758,
+      "total_chunks": 9,
+      "total_tokens": 4528,
+      "avg_tokens_per_chunk": 503.1,
+      "quality_score": 40.0,
+      "quality_grade": "F - Poor",
+      "output_files": {
+        "json": "D:\\project\\ainseba\\data\\processed\\muslim_family_law_1961_chunks.json",
+        "csv": "D:\\project\\ainseba\\data\\processed\\muslim_family_law_1961_chunks.csv",
+        "cleaned_text": "D:\\project\\ainseba\\data\\processed\\muslim_family_law_1961_cleaned.txt",
+        "quality_report": "D:\\project\\ainseba\\data\\processed\\muslim_family_law_1961_quality_report.json"
+      }
+    },
+    {
+      "status": "success",
+      "filename": "environment_conservation_act_1995.pdf",
+      "act_name": "Bangladesh Environment Conservation Act 1995",
+      "act_id": "environment_act_1995",
+      "pages_extracted": 14,
+      "chars_raw": 36801,
+      "chars_cleaned": 30879,
+      "total_chunks": 13,
+      "total_tokens": 7109,
+      "avg_tokens_per_chunk": 546.8,
+      "quality_score": 40.0,
+      "quality_grade": "F - Poor",
+      "output_files": {
+        "json": "D:\\project\\ainseba\\data\\processed\\environment_act_1995_chunks.json",
+        "csv": "D:\\project\\ainseba\\data\\processed\\environment_act_1995_chunks.csv",
+        "cleaned_text": "D:\\project\\ainseba\\data\\processed\\environment_act_1995_cleaned.txt",
+        "quality_report": "D:\\project\\ainseba\\data\\processed\\environment_act_1995_quality_report.json"
+      }
+    },
+    {
+      "status": "success",
+      "filename": "state_acquisition_tenancy_act_1950.pdf",
+      "act_name": "State Acquisition and Tenancy Act 1950",
+      "act_id": "tenancy_act_1950",
+      "pages_extracted": 158,
+      "chars_raw": 411432,
+      "chars_cleaned": 333517,
+      "total_chunks": 70,
+      "total_tokens": 59309,
+      "avg_tokens_per_chunk": 847.3,
+      "quality_score": 98.0,
+      "quality_grade": "A - Excellent",
+      "output_files": {
+        "json": "D:\\project\\ainseba\\data\\processed\\tenancy_act_1950_chunks.json",
+        "csv": "D:\\project\\ainseba\\data\\processed\\tenancy_act_1950_chunks.csv",
+        "cleaned_text": "D:\\project\\ainseba\\data\\processed\\tenancy_act_1950_cleaned.txt",
+        "quality_report": "D:\\project\\ainseba\\data\\processed\\tenancy_act_1950_quality_report.json"
+      }
+    }
+  ],
+  "skipped": [
     {
       "act_id": "consumer_rights_2009",
       "act_name": "Consumer Rights Protection Act 2009",
@@ -29,11 +120,6 @@
       "reason": "PDF not found at D:\\project\\ainseba\\data\\raw\\rent_control_act_1991.pdf"
     },
     {
-      "act_id": "muslim_family_law_1961",
-      "act_name": "Muslim Family Laws Ordinance 1961",
-      "reason": "PDF not found at D:\\project\\ainseba\\data\\raw\\muslim_family_laws_ordinance_1961.pdf"
-    },
-    {
       "act_id": "companies_act_1994",
       "act_name": "The Companies Act 1994",
       "reason": "PDF not found at D:\\project\\ainseba\\data\\raw\\companies_act_1994.pdf"
@@ -45,11 +131,18 @@
     }
   ],
   "failed": [],
+  "combined_quality": {
+    "score": 85.5,
+    "grade": "B - Good",
+    "improvement_suggestions": [
+      "24 quality issues found (11% of chunks)"
+    ]
+  },
   "summary": {
-    "processed_count": 0,
-    "skipped_count": 8,
+    "processed_count": 5,
+    "skipped_count": 5,
     "failed_count": 0,
-    "total_chunks": 0,
-    "total_tokens": 0
+    "total_chunks": 219,
+    "total_tokens": 153333
   }
 }

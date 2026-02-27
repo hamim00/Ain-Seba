@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 
 try:
     import tiktoken
-    _encoding = tiktoken.encoding_for_model("gpt-4o-mini")
+    _encoding = tiktoken.get_encoding("o200k_base")
 
     def count_tokens(text: str) -> int:
         """Count tokens using tiktoken (OpenAI tokenizer)."""

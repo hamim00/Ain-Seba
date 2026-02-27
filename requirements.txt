@@ -20,7 +20,7 @@ click==8.1.7              # CLI interface
 # Testing
 pytest==8.3.3             # Unit tests
 
-# --- Phase 2: Vector Store & Retrieval ---
+# Vector Store & Retrieval ---
 # OpenAI Embeddings
 openai==1.58.1            # OpenAI API (text-embedding-3-small)
 
@@ -31,7 +31,17 @@ tokenizers==0.20.3
 torch==2.5.1
 
 
-# --- Phase 3: RAG Chain & LLM ---
+# --- RAG Chain & LLM ---
 langchain==0.3.13
 langchain-openai==0.2.14
 langchain-core==0.3.28
+
+
+# ---  FastAPI Backend ---
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+httpx==0.28.1
+
+# --- Phase 6: Streamlit Frontend ---
+streamlit==1.41.1
+requests==2.32.3

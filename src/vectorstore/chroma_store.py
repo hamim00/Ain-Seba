@@ -3,7 +3,6 @@ AinSeba - ChromaDB Vector Store
 Manages the ChromaDB collection for storing and querying law document embeddings.
 """
 
-import json
 import logging
 from pathlib import Path
 from typing import Optional
@@ -36,6 +35,11 @@ class ChromaStore:
     - Metadata-based filtering (by act, chapter, section, category, year)
     - Batch upsert with deduplication via chunk_id
     - Collection statistics and inspection utilities
+
+    NOTE:
+    - We provide embeddings ourselves (OpenAI).
+    - Therefore we explicitly set embedding_function=None to prevent Chroma
+      from loading its DefaultEmbeddingFunction (which pulls onnxruntime).
     """
 
     def __init__(
@@ -61,8 +65,10 @@ class ChromaStore:
             settings=Settings(anonymized_telemetry=False),
         )
 
+        # ✅ Critical fix: prevent default embedding function from loading (onnxruntime)
         self.collection = self.client.get_or_create_collection(
             name=collection_name,
+            embedding_function=None,
             metadata={"hnsw:space": "cosine"},  # Cosine similarity
         )
 
@@ -81,16 +87,6 @@ class ChromaStore:
     ) -> int:
         """
         Add chunks with embeddings and metadata to ChromaDB.
-
-        Args:
-            chunk_ids: Unique IDs for each chunk.
-            texts: Raw text of each chunk.
-            embeddings: Pre-computed embedding vectors.
-            metadatas: Metadata dicts for each chunk.
-            batch_size: Number of documents per upsert batch.
-
-        Returns:
-            Number of chunks added.
         """
         if not chunk_ids:
             logger.warning("No chunks to add.")
@@ -100,7 +96,6 @@ class ChromaStore:
             "All input lists must have the same length."
         )
 
-        # Clean metadata for ChromaDB (only simple types allowed)
         clean_metadatas = [self._clean_metadata(m) for m in metadatas]
 
         total_added = 0
@@ -136,20 +131,6 @@ class ChromaStore:
     ) -> dict:
         """
         Query the vector store for similar chunks.
-
-        Args:
-            query_embedding: The query's embedding vector.
-            top_k: Number of results to return.
-            where: Optional metadata filter (ChromaDB where clause).
-                   E.g., {"act_id": "labour_act_2006"}
-                   E.g., {"category": "Employment"}
-                   E.g., {"year": {"$gte": 2000}}
-            where_document: Optional document content filter.
-                   E.g., {"$contains": "wages"}
-
-        Returns:
-            ChromaDB query results dict with keys:
-            ids, documents, metadatas, distances, embeddings
         """
         query_kwargs = {
             "query_embeddings": [query_embedding],
@@ -174,15 +155,6 @@ class ChromaStore:
     ) -> list[dict]:
         """
         High-level query: embed text, search, return formatted results.
-
-        Args:
-            query_text: Natural language query.
-            embedding_fn: Callable that takes a string and returns an embedding vector.
-            top_k: Number of results.
-            where: Optional metadata filter.
-
-        Returns:
-            List of result dicts with: chunk_id, text, metadata, distance, similarity_score.
         """
         query_embedding = embedding_fn(query_text)
         raw_results = self.query(
@@ -193,11 +165,7 @@ class ChromaStore:
         return self.format_results(raw_results)
 
     def format_results(self, raw_results: dict) -> list[dict]:
-        """
-        Public formatter for raw ChromaDB query results.
-
-        The test suite expects this method to exist.
-        """
+        """Public formatter for raw ChromaDB query results."""
         return self._format_results(raw_results)
 
     def get_stats(self) -> dict:
@@ -212,7 +180,6 @@ class ChromaStore:
                 "categories": [],
             }
 
-        # Sample metadata to gather stats (get up to 1000 docs)
         sample_size = min(count, 1000)
         sample = self.collection.get(
             limit=sample_size,
@@ -262,7 +229,6 @@ class ChromaStore:
 
     def delete_act(self, act_id: str) -> int:
         """Delete all chunks for a specific act (useful for re-ingestion)."""
-        # First get the IDs
         results = self.collection.get(
             where={"act_id": act_id},
             include=[],
@@ -279,8 +245,11 @@ class ChromaStore:
         """Delete and recreate the collection (WARNING: destroys all data)."""
         logger.warning(f"Resetting collection '{self.collection_name}'!")
         self.client.delete_collection(self.collection_name)
+
+        # ✅ Critical fix here too
         self.collection = self.client.get_or_create_collection(
             name=self.collection_name,
+            embedding_function=None,
             metadata={"hnsw:space": "cosine"},
         )
         logger.info("Collection reset complete.")
@@ -296,7 +265,6 @@ class ChromaStore:
                 if isinstance(value, (str, int, float, bool)):
                     clean[key] = value
                 elif isinstance(value, list):
-                    # Convert lists to comma-separated strings
                     clean[key] = ",".join(str(v) for v in value)
                 elif value is not None:
                     clean[key] = str(value)
@@ -310,7 +278,6 @@ class ChromaStore:
         results = []
         for i in range(len(raw_results["ids"][0])):
             distance = raw_results["distances"][0][i]
-            # Convert cosine distance to similarity score (0-1)
             similarity = 1 - distance
 
             results.append(
